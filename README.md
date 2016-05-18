@@ -1,14 +1,12 @@
 # Maquina Girondo
 Algortimo de Textos Generativos (Versos y Poemas) con partido estético de Oliverio Girondo. 
 
-clase Verso:
+### clase Verso:
 
-Recibe dos parámetros tipo byte:
+* Cantidad de Palabras [byte] [1 - 7]
+* Estructura sintáctica del verso [byte] [0 - 1]
 
-* Cantidad de Palabras [1 - 7]
-* Estructura sintáctica del verso [0 - 1]
-
-TO-DO
+### TO-DO
 
 * Variedad de estructuras a elegir
 * Sistema de selección de estructuras
