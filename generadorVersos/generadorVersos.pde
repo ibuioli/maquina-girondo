@@ -5,7 +5,7 @@ String[] conj1, conj2, inf;
 String[] exeFem;
 
 void setup() {
-  size(600, 100);
+  size(800, 100);
 
   prep = loadStrings("data/preposiciones.txt");
   nums = loadStrings("data/nums.txt");
@@ -21,7 +21,8 @@ void setup() {
   conj2 = loadStrings("data/vocabulario/verb/conj2.txt");
   inf = loadStrings("data/vocabulario/verb/infinitivos.txt");
 
-  uno = new Verso(byte(1), byte(0));
+  uno = new Verso( byte( floor(random(1, 7.99)) ), byte( floor(random(0, 1.99)) ) ); //Generador Aleatorio, todavía experimental
+  //uno = new Verso( byte( 7 ), byte( 1 ) );
 }
 
 void draw() {
