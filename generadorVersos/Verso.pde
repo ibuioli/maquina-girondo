@@ -26,9 +26,9 @@ class Verso {
       palabras[4] = prep[(int)random(1, prep.length)];
       palabras[5] = resto[(int)random(1, resto.length)];
       palabras[6] = adjGenero(palabras[5]);
-    }else if(c == 7 && e == 1){
+    } else if (c == 7 && e == 1) {
       palabras[0] = esPlural(4);
-      palabras[1] = adjGenero(palabras[0]);
+      palabras[1] = adjGenero(palabras[0])+",";
       palabras[2] = conj1[(int)random(1, conj1.length)];
       palabras[3] = prep[(int)random(1, prep.length)];
       palabras[4] = conArt(esPlural(3));
@@ -64,6 +64,12 @@ class Verso {
       palabras[2] = conVerb(palabras[0]);
       palabras[3] = prep[(int)random(1, prep.length)];
       palabras[4] = conArt(resto[(int)random(1, resto.length)]);
+    } else if (c == 5 && e == 2) {
+      palabras[0] = nums[(int)random(1, nums.length)];
+      palabras[1] = esPlural(2);
+      palabras[2] = conj1[(int)random(1, conj1.length)];
+      palabras[3] = "por";
+      palabras[4] = conArt(lugar[(int)random(1, lugar.length)]);
     }
 
     if (c == 4 && e == 0) {
@@ -102,12 +108,15 @@ class Verso {
     } else if (c == 2 && e == 1) {
       palabras[0] = "su";
       palabras[1] = esSingular(4);
+    } else if (c == 2 && e == 2) {
+      palabras[0] = nums[(int)random(1, nums.length)];
+      palabras[1] = esPlural((int)random(0, 4));
     }
 
     if (c == 1 && e == 0) {
       palabras[0] = resto[(int)random(1, resto.length)];
     } else if (c == 1 && e == 1) {
-      palabras[0] = inf[(int)random(1, inf.length)];
+      palabras[0] = inf[(int)random(1, inf.length)]+"se";
     }
 
     /////////////////////////////////////////////////////////////
