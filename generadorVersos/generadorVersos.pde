@@ -22,15 +22,15 @@ void setup() {
   conj2 = loadStrings("data/vocabulario/verb/conj2.txt");
   inf = loadStrings("data/vocabulario/verb/infinitivos.txt");
 
-  uno = new Verso( byte( floor(random(1, 7.99)) ), byte( floor(random(0, 1.99)) ) ); //Generador Aleatorio, todavía experimental
-  //uno = new Verso( byte( 5 ), byte( 2 ) );
+  uno = new Verso( byte( floor(random(1, 7.99)) ), byte( floor(random(0, 2.99)) ) ); //Generador Aleatorio, todavía experimental
+  //uno = new Verso( byte( 7 ), byte( 2 ) );
 }
 
 void draw() {
   background(240);
   textSize(10);
   textAlign(RIGHT);
-  text("La Máquina Girondo alpha 1.2.4", width-5, height-6);
+  text("La Máquina Girondo alpha 1.2.5", width-5, height-6);
 
   fill(0);
   textAlign(CENTER);

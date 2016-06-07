@@ -3,7 +3,7 @@ class Verso {
   String[] palabras;
   String verso;
   byte c, e;
-  boolean exc, pre;
+  boolean exc, pre, comilla, nada;
 
   Verso(byte c_, byte e_) {  //Cant. de Palabras, Estructura
     c = c_;
@@ -34,6 +34,14 @@ class Verso {
       palabras[4] = conArt(esPlural(3));
       palabras[5] = "de";
       palabras[6] = conArt(esPlural(2));
+    } else if (c == 7 && e == 2) {
+      palabras[0] = esPlural(2);
+      palabras[1] = adjGenero(palabras[0]);
+      palabras[2] = "se";
+      palabras[3] = conj1[(int)random(1, conj1.length)];
+      palabras[4] = "en";
+      palabras[5] = conArt(lugar[(int)random(1, lugar.length)]);
+      palabras[6] = adjGenero(palabras[5]);
     }
 
     if (c == 6 && e == 0) {
@@ -49,6 +57,17 @@ class Verso {
       palabras[2] = prenda[(int)random(1, prenda.length)];
       palabras[3] = prep[(int)random(1, prep.length)];
       palabras[4] = conArt(cuerpo[(int)random(1, cuerpo.length)]);
+      palabras[5] = adjGenero(palabras[4]);
+    } else if (c == 6 && e == 2) {
+      palabras[0] = esPlural(4);
+      palabras[1] = prep[(int)random(1, prep.length)];
+      palabras[2] = nums[(int)random(1, nums.length)];
+      if (palabras[2].equals("mil")) {
+        palabras[3] = "millones de";
+      } else {
+        palabras[3] = "mil";
+      }
+      palabras[4] = esPlural(0);
       palabras[5] = adjGenero(palabras[4]);
     }
 
@@ -82,6 +101,12 @@ class Verso {
       palabras[1] = conVerb(palabras[0])+"n";
       palabras[2] = prep[(int)random(1, prep.length)];
       palabras[3] = conArt(resto[(int)random(1, resto.length)]);
+    } else if (c == 4 && e == 2) {
+      nada = true;
+      palabras[0] = resto[(int)random(1, resto.length)];
+      palabras[1] = adjGenero(palabras[0])+".";
+      palabras[2] = lugar[(int)random(1, lugar.length)];
+      palabras[3] = adjGenero(palabras[2]);
     }
 
     if (c == 3 && e == 0) {
@@ -100,6 +125,10 @@ class Verso {
       palabras[0] = "están en";
       palabras[1] = conArt(lugar[(int)random(1, lugar.length)]);
       palabras[2] = adjGenero(palabras[1]);
+    } else if (c == 3 && e == 2) {
+      palabras[0] = "no";
+      palabras[1] = conj1[(int)random(1, conj1.length)];
+      palabras[2] = conArt(esPlural(0));
     }
 
     if (c == 2 && e == 0) {
@@ -117,6 +146,13 @@ class Verso {
       palabras[0] = resto[(int)random(1, resto.length)];
     } else if (c == 1 && e == 1) {
       palabras[0] = inf[(int)random(1, inf.length)]+"se";
+    } else if (c == 1 && e == 2) {
+      if ((int)random(0, 100) < 70) {
+        comilla = true;
+      } else {
+        comilla = false;
+      }
+      palabras[0] = prenda[(int)random(1, prenda.length)];
     }
 
     /////////////////////////////////////////////////////////////
@@ -130,12 +166,16 @@ class Verso {
       }
     }
 
-    if (random(0, 100) <= 15) { //Exclamar o No
-      exc = true;
-    }
+    if (nada == false) {  //Verso Normal
+      if (comilla == false) {  //Comillas al verso
+        if (random(0, 100) <= 15) { //Exclamar o No
+          exc = true;
+        }
 
-    if (exc == false && random(0, 100) <= 3) {
-      pre = true;
+        if (exc == false && random(0, 100) <= 2) { //Preguntar o No
+          pre = true;
+        }
+      }
     }
 
     //Correcciones de Texto
