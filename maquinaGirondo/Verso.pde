@@ -183,19 +183,21 @@ class Verso {
       verso = verso.replace(" a el ", " al ");
       verso = verso.replace(" de el ", " del ");
     }
+    if (exc) {
+      verso = "¡"+verso+"!";
+    } else if (pre) {
+      verso = "¿"+verso+"?";
+    }
   }
 
-  void escribir(int x, int y) {
+  void escribir() {
     pushMatrix();
-    translate(x, y);
-    if (exc) {
-      text("¡"+verso+"!", 0, 0);
-    } else if (pre) {
-      text("¿"+verso+"?", 0, 0);
-    } else {
-      text(verso, 0, 0);
-    }
+    text(verso, 0, 0);
     println(verso);
     popMatrix();
+  }
+  
+  String texto(){
+    return verso;
   }
 }
