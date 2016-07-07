@@ -6,6 +6,10 @@ Algortimo de Textos Generativos (Versos y Poemas) con partido estético de Olive
 * Cantidad de Palabras [byte] [1 - 7]
 * Estructura sintáctica del verso [byte] [0 - 2]
 
+### clase Estrofa:
+
+* Cantidad de Versos [byte]
+
 ### TO-DO
 
 * Variedad de estructuras a elegir
