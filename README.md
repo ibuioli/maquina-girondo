@@ -4,7 +4,7 @@ Algortimo de Textos Generativos (Versos y Poemas) con partido estético de Olive
 ### clase Verso:
 
 * Cantidad de Palabras [byte] [1 - 7]
-* Estructura sintáctica del verso [byte] [0 - 1]
+* Estructura sintáctica del verso [byte] [0 - 2]
 
 ### TO-DO
 
@@ -12,4 +12,3 @@ Algortimo de Textos Generativos (Versos y Poemas) con partido estético de Olive
 * Sistema de selección de estructuras
 * Sistema de relación entre versos
 * Palabras asociadas a Temas
-* Clase Estrofa que genere recursión de la clase Verso
