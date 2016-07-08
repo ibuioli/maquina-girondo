@@ -43,7 +43,7 @@ void draw() {
   
   textSize(10);
   textAlign(RIGHT);
-  text("La Máquina Girondo alpha 1.3.2", width-5, height-6);
+  text("La Máquina Girondo alpha 1.3.3", width-6, height-6);
 
   textAlign(LEFT, CENTER);
   textSize(24);
