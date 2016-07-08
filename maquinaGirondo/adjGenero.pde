@@ -26,7 +26,17 @@ String adjGenero(String sus2) {
       if (sub1.equals("a")) {
         adj2 = sadj+"a";
       } else if (sub1.equals("o")) {
-        adj2 = sadj+"o";
+        if (fem) {
+          adj2 = sadj+"a";
+        } else {
+          adj2 = sadj+"o";
+        }
+      } else if (sub1.equals("e")) {
+        if (fem) {
+          adj2 = sadj+"a";
+        } else {
+          adj2 = sadj+"o";
+        }
       } else if (sub1.equals("z")) {
         String sub2 = sus2.substring(sus2.length()-2, sus2.length());
         if (sub2.equals("oz")) {

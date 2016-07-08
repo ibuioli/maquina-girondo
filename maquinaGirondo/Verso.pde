@@ -184,9 +184,9 @@ class Verso {
       verso = verso.replace(" de el ", " del ");
     }
     if (exc) {
-      verso = "¡"+verso+"!";
+      verso = "¡"+letraCapital(verso)+"!";
     } else if (pre) {
-      verso = "¿"+verso+"?";
+      verso = "¿"+letraCapital(verso)+"?";
     }
   }
 

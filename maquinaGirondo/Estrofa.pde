@@ -37,6 +37,7 @@ class Estrofa {
           t = ""+t + versos.get(i).texto()+"\n";
         }
       }
+      
     }
 
     //DATOS//

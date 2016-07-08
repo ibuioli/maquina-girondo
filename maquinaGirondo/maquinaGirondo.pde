@@ -7,7 +7,11 @@ PImage back;
 PFont times;
 
 void setup() {
-  size(400, 600, P2D);
+  //fullScreen(P2D);    //App Celulares
+  //orientation(PORTRAIT);
+  size(400, 600, P2D);  //App de escritorio
+  
+  ////CARGA DE DATOS////
 
   prep = loadStrings("data/preposiciones.txt");
   nums = loadStrings("data/nums.txt");
@@ -26,19 +30,20 @@ void setup() {
   back = loadImage("data/back.jpg");
   times = loadFont("data/times.vlw");
 
-  poema = new Estrofa( byte(5) );  //Cantidad de Versos
+  poema = new Estrofa( byte(6) );  //Cantidad de Versos
+  
+  ////GRAFICA GRAL////
+  fill(0, 250);
+  textFont(times);
 }
 
 void draw() {
   background(198, 186, 146);
   image(back, 0, 0, width, height);
-
-  fill(0);
-  textFont(times);
   
   textSize(10);
   textAlign(RIGHT);
-  text("La Máquina Girondo alpha 1.3.1", width-5, height-6);
+  text("La Máquina Girondo alpha 1.3.2", width-5, height-6);
 
   textAlign(LEFT, CENTER);
   textSize(24);
@@ -47,5 +52,5 @@ void draw() {
 }
 
 void mousePressed() {
-  setup();
+  poema = new Estrofa( byte(6) );  //Nuevo Poema
 }

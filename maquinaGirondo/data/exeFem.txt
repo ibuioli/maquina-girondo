@@ -24,3 +24,6 @@ oraciones
 llave
 densidad
 rechonchez
+visión
+luz
+virgen
