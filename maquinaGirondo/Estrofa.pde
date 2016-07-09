@@ -7,10 +7,13 @@ class Estrofa {
   byte[] palabras;
   byte[] estru;
 
+  int enume;
+
   Estrofa(byte c_) {
     c = c_;  //Cantidad de Palabras
 
     t = "";  //Evita el valor null inicial
+    enume = 0; //Resetea la variable de enumeración
 
     versos = new ArrayList<Verso>();
     palabras = new byte[c];
@@ -26,9 +29,38 @@ class Estrofa {
         if (palabras[i-1] == byte(7) && estru[i-1] == byte(1)) {
           palabras[i] = 7;
           estru[i] = 0;
+        } else if (palabras[i-1] == byte(6) && estru[i-1] == byte(1)) {
+          float r = random(0, 100);
+
+          if (r > 50) {
+            palabras[i] = 5;
+            estru[i] = 0;
+          } else {
+            palabras[i] = 3;
+            estru[i] = 1;
+          }
+        } else if (palabras[i-1] == byte(6) && estru[i-1] == byte(2)) {
+          float r = random(0, 100);
+
+          if (r > 50) {
+            palabras[i] = 5;
+            estru[i] = 0;
+          } else {
+            palabras[i] = 3;
+            estru[i] = 1;
+          }
         } else if (palabras[i-1] == byte(4) && estru[i-1] == byte(2)) {
           palabras[i] = 7;
           estru[i] = 0;
+        } else if (palabras[i-1] == byte(1) && estru[i-1] == byte(0)) {
+          if (enume < 2) {
+            palabras[i] = byte(1);
+            estru[i] = byte(0);
+          } else {
+            palabras[i] = byte( floor(random(1, 7.99)) );
+            estru[i] = byte( floor(random(0, 2.99)) );
+          }
+          enume++;
         } else {
           palabras[i] = byte( floor(random(1, 7.99)) );
           estru[i] = byte( floor(random(0, 2.99)) );
