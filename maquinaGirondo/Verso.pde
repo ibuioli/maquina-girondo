@@ -40,7 +40,7 @@ class Verso {
       palabras[2] = "se";
       palabras[3] = conj1[(int)random(1, conj1.length)];
       palabras[4] = "en";
-      palabras[5] = conArt(lugar[(int)random(1, lugar.length)]);
+      palabras[5] = conArt(temaLugar());
       palabras[6] = adjGenero(palabras[5]);
     }
 
@@ -88,7 +88,7 @@ class Verso {
       palabras[1] = esPlural(2);
       palabras[2] = conj1[(int)random(1, conj1.length)];
       palabras[3] = "por";
-      palabras[4] = conArt(lugar[(int)random(1, lugar.length)]);
+      palabras[4] = conArt(temaLugar());
     }
 
     if (c == 4 && e == 0) {
@@ -117,13 +117,13 @@ class Verso {
         palabras[1] = "en";
       }
       if (palabras[1].equals("en")) {
-        palabras[2] = conArt(lugar[(int)random(1, lugar.length)]);
+        palabras[2] = conArt(temaLugar());
       } else {
         palabras[2] = conArt(esPlural(2));
       }
     } else if (c == 3 && e == 1) {
       palabras[0] = "están en";
-      palabras[1] = conArt(lugar[(int)random(1, lugar.length)]);
+      palabras[1] = conArt(temaLugar());
       palabras[2] = adjGenero(palabras[1]);
     } else if (c == 3 && e == 2) {
       palabras[0] = "no";

@@ -5,6 +5,7 @@ String[] conj1, conj2, inf;
 String[] exeFem;
 PImage back;
 PFont times;
+int tema;  //0: calle, 1: noche, 2: plaza, 3:mar
 
 void setup() {
   //fullScreen(P2D);    //App Celulares
@@ -29,7 +30,8 @@ void setup() {
 
   back = loadImage("data/back.jpg");
   times = loadFont("data/times.vlw");
-
+  
+  tema = floor(random(0, 3.99));   //Definir Tema
   poema = new Estrofa( byte(6) );  //Cantidad de Versos
   
   ////GRAFICA GRAL////
@@ -43,7 +45,7 @@ void draw() {
   
   textSize(10);
   textAlign(RIGHT);
-  text("La Máquina Girondo alpha 1.3.4", width-6, height-6);
+  text("La Máquina Girondo alpha 1.3.5", width-6, height-6);
 
   textAlign(LEFT, CENTER);
   textSize(24);
@@ -52,5 +54,6 @@ void draw() {
 }
 
 void mousePressed() {
+  tema = floor(random(0, 3.99));   //Nueva Tema
   poema = new Estrofa( byte(6) );  //Nuevo Poema
 }

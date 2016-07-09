@@ -31,9 +31,6 @@ arcadas
 arco
 arena
 arpegia
-arreglemos
-arriba
-arroja
 aserrín
 atrio
 aullido
