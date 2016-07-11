@@ -18,7 +18,6 @@ edificio
 iglesia
 quioscos
 palacio
-
 casino
 tabernas
 palacio
@@ -31,7 +30,6 @@ edificio
 casas
 esquina
 terrazas
-
 desierto
 paisaje
 paraíso
@@ -44,7 +42,6 @@ patios
 jardines
 patios
 plaza
-
 puerto
 laguna
 muelles

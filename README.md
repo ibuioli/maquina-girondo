@@ -1,5 +1,5 @@
 # Maquina Girondo
-Versión Alpha 1.3.5
+Versión Alpha 1.3.6
 
 Algortimo de Textos Generativos (Versos y Poemas) con partido estético de Oliverio Girondo.
 

@@ -26,10 +26,10 @@ class Estrofa {
         estru[i] = byte( floor(random(0, 2.99)) );
       } else {
         /*ESTRUCTURAS BASADAS EN VERSO ANTERIOR*/
-        if (palabras[i-1] == byte(7) && estru[i-1] == byte(1)) {
+        if (palabras[i-1] == byte(7) && estru[i-1] == byte(1)) {  //SIETE PALABRAS
           palabras[i] = 7;
           estru[i] = 0;
-        } else if (palabras[i-1] == byte(6) && estru[i-1] == byte(1)) {
+        } else if (palabras[i-1] == byte(6) && estru[i-1] == byte(1)) {  //SEIS PALABRAS
           float r = random(0, 100);
 
           if (r > 50) {
@@ -49,10 +49,26 @@ class Estrofa {
             palabras[i] = 3;
             estru[i] = 1;
           }
-        } else if (palabras[i-1] == byte(4) && estru[i-1] == byte(2)) {
+        } else if (palabras[i-1] == byte(4) && estru[i-1] == byte(2)) {  //CUATRO PALABRAS
           palabras[i] = 7;
           estru[i] = 0;
-        } else if (palabras[i-1] == byte(1) && estru[i-1] == byte(0)) {
+        } else if (palabras[i-1] == byte(2) && estru[i-1] == byte(0)) {  //DOS PALABRAS
+          float r = random(0, 100);
+
+          if (r > 50) {
+            palabras[i] = 3;
+            estru[i] = 1;
+          } else {
+            palabras[i] = 3;
+            estru[i] = 2;
+          }
+        } else if (palabras[i-1] == byte(2) && estru[i-1] == byte(1)) {
+          palabras[i] = 6;
+          estru[i] = 0;
+        } else if (palabras[i-1] == byte(2) && estru[i-1] == byte(2)) {
+          palabras[i] = 3;
+          estru[i] = 1;
+        } else if (palabras[i-1] == byte(1) && estru[i-1] == byte(0)) {  //UNA PALABRA
           if (enume < 2) {
             palabras[i] = byte(1);
             estru[i] = byte(0);
