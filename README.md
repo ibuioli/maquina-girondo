@@ -1,9 +1,9 @@
 # Maquina Girondo
-Versión Alpha 1.3.6
+Versión Beta 1.0
 
-Algortimo de Textos Generativos (Versos y Poemas) con partido estético de Oliverio Girondo.
+Algortimo de Textos Generativos (Versos y Poemas) con partido estético del poeta argentino Oliverio Girondo.
 
-El sistema selecciona un verso al azar y a partir de ahí los siguientes versos se construyen en relación al verso anterior, hasta completar la totalidad de palabras elegidas. Las palabras se escogen acorde a uno de los cuatro temas de la poesía de Girondo: Calle, Noche, Plaza, Mar.
+El sistema selecciona un verso al azar y a partir de ahí los siguientes versos se construyen en relación al verso anterior, hasta completar la totalidad de versos elegidos. Las palabras se escogen acorde a uno de los cuatro temas de la poesía de Girondo: Calle, Noche, Plaza, Mar.
 
 ### clase Verso:
 
@@ -12,8 +12,9 @@ El sistema selecciona un verso al azar y a partir de ahí los siguientes versos 
 
 ### clase Estrofa:
 
-* Cantidad de Versos [byte]
+* Cantidad de Versos [byte] [mayor a 1]
 
 ### TO-DO
 
-* Variedad de estructuras a elegir
+* Optimización de la App para Android
+* Categorías de temas asociadas a valores de entrada
