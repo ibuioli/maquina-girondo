@@ -5,6 +5,7 @@ acariciar
 afeitar
 apoyar
 aprender
+almibarar
 caer
 dejar
 dormir

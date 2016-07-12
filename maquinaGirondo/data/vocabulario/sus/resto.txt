@@ -16,7 +16,6 @@ alga
 aliento
 alma
 almendras
-almibarar
 alquitrán
 alrededor
 alrededores
@@ -370,12 +369,10 @@ vergüenza
 victorias
 vida
 vidrios
-virgen
 virutas
 visaje
 visión
 vuelo
-vírgenes
 zafiros
 ópalo
 agua

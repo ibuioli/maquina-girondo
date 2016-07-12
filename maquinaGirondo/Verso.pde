@@ -182,6 +182,9 @@ class Verso {
     if (verso.equals("") == false) {
       verso = verso.replace(" a el ", " al ");
       verso = verso.replace(" de el ", " del ");
+      //Corrección de errores excepcionales
+      verso = verso.replace("violeto", "violeta");
+      verso = verso.replace("violetos", "violetas");
     }
     if (exc) {
       verso = "¡"+letraCapital(verso)+"!";

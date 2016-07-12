@@ -5,6 +5,7 @@ String adjGenero(String sus2) {
   String sadj;
   boolean vocal;
   boolean fem = false;
+  boolean mas = false;
   String uletra = suadj.substring(suadj.length()-1, suadj.length());
 
   if (uletra.equals("l") || uletra.equals("r") || uletra.equals("e")) {
@@ -18,13 +19,24 @@ String adjGenero(String sus2) {
   for (int i=0; i < exeFem.length; i++) {
     if ( sus2.equals(exeFem[i]) ) {
       fem = true;
+      mas = false;
+    }
+  }
+  for (int i=0; i < exeMas.length; i++) {
+    if ( sus2.equals(exeMas[i]) ) {
+      mas = true;
+      fem = false;
     }
   }
 
   if (sub1.equals("s") == false) {
     if (vocal) {
       if (sub1.equals("a")) {
-        adj2 = sadj+"a";
+        if (mas == false) {
+          adj2 = sadj+"a";
+        } else {
+          adj2 = sadj+"o";
+        }
       } else if (sub1.equals("o")) {
         if (fem) {
           adj2 = sadj+"a";
@@ -42,7 +54,11 @@ String adjGenero(String sus2) {
         if (sub2.equals("oz")) {
           adj2 = sadj+"a";
         } else {
-          adj2 = sadj+"o";
+          if (fem) {
+            adj2 = sadj+"a";
+          } else {
+            adj2 = sadj+"o";
+          }
         }
       } else {
         if (fem) {
@@ -52,15 +68,29 @@ String adjGenero(String sus2) {
         }
       }
     } else {
-      adj2 = sadj;
+      if (fem) {
+        adj2 = sadj+"a";
+      } else if (mas) {
+        adj2 = sadj+"o";
+      } else {
+        adj2 = sadj;
+      }
     }
   } else if (sub1.equals("s")) {
     if (vocal) {
       String sub2 = sus2.substring(sus2.length()-2, sus2.length());
       if (sub2.equals("as")) {
-        adj2 = sadj+"as";
+        if (mas) {
+          adj2 = sadj+"os";
+        } else {
+          adj2 = sadj+"as";
+        }
       } else if (sub2.equals("os")) {
-        adj2 = sadj+"os";
+        if (fem) {
+          adj2 = sadj+"as";
+        } else {
+          adj2 = sadj+"os";
+        }
       } else if (sub2.equals("es")) {
         if (fem) {
           adj2 = sadj+"as";

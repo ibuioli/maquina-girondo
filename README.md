@@ -1,5 +1,5 @@
 # Maquina Girondo
-Versión Beta 1.0
+Versión Beta 1.0.1
 
 Algortimo de Textos Generativos (Versos y Poemas) con partido estético del poeta argentino Oliverio Girondo.
 

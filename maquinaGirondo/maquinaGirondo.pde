@@ -2,7 +2,7 @@ Estrofa poema;
 String[] prep, nums, adj;
 String[] cuerpo, lugar, persona, prenda, resto;
 String[] conj1, conj2, inf;
-String[] exeFem;
+String[] exeFem, exeMas;
 PImage back;
 PFont times;
 int tema;  //0: calle, 1: noche, 2: plaza, 3:mar
@@ -10,13 +10,14 @@ int tema;  //0: calle, 1: noche, 2: plaza, 3:mar
 void setup() {
   //fullScreen(P2D);    //App Celulares
   //orientation(PORTRAIT);
-  size(400, 600, P2D);  //App de escritorio
+  size(320, 480, P2D);  //App de escritorio
   
   ////CARGA DE DATOS////
 
   prep = loadStrings("preposiciones.txt");
   nums = loadStrings("nums.txt");
   exeFem = loadStrings("exeFem.txt");
+  exeMas = loadStrings("exeMas.txt");
 
   cuerpo = loadStrings("vocabulario/sus/cuerpo.txt");
   lugar = loadStrings("vocabulario/sus/lugar.txt");
@@ -32,7 +33,7 @@ void setup() {
   times = createFont("timesbd.ttf", 48, true);
   
   tema = floor(random(0, 3.99));   //Definir Tema
-  poema = new Estrofa( byte(6) );  //Cantidad de Versos
+  poema = new Estrofa( byte( floor(random(3, 7.99)) ) );  //Cantidad de Versos
   
   ////GRAFICA GRAL////
   fill(0, 250);
@@ -45,15 +46,12 @@ void draw() {
   
   textSize(10);
   textAlign(RIGHT);
-  text("La Máquina Girondo beta 1.0", width-6, height-6);
-
-  textAlign(LEFT, CENTER);
-  textSize(24);
+  text("La Máquina Girondo beta 1.0.1", width-6, height-6);
 
   poema.escribir();
 }
 
 void mousePressed() {
   tema = floor(random(0, 3.99));   //Nueva Tema
-  poema = new Estrofa( byte(6) );  //Nuevo Poema
+  poema = new Estrofa( byte( floor(random(3, 7.99)) ) );  //Nuevo Poema
 }

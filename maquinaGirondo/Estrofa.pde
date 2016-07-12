@@ -111,10 +111,9 @@ class Estrofa {
         }
       }
     }
-
+    
     //DATOS//
-
-    loc = "Buenos Aires";
+    loc = "Buenos Aires";  //Localización
 
     //GENERACIÓN DE FIRMA//
 
@@ -122,11 +121,15 @@ class Estrofa {
   }
 
   void escribir() {
-    text(t, 10, 0, width-10, height);
+    textAlign(LEFT, CENTER);
+    textSize(24);
+    textLeading(24);
+    text(t, 10, 0, width-20, height);
     textSize(15);
     textAlign(RIGHT);
-    text(firma.toUpperCase(), width-10, height-100);
-    println(t);
+    text(firma.toUpperCase(), width-10, height - map(c, 3, 7, 90, 35));
+    
+    println();
   }
 
   String texto() {
