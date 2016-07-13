@@ -1,7 +1,7 @@
 /*Clase generadora de Estrofa*/
 class Estrofa {
   ArrayList<Verso> versos;
-  String t, firma, loc;
+  String t, firma;
   byte c;
 
   byte[] palabras;
@@ -111,13 +111,14 @@ class Estrofa {
         }
       }
     }
-    
-    //DATOS//
-    loc = "Buenos Aires";  //Localización
 
     //GENERACIÓN DE FIRMA//
 
-    firma = loc+",  "+mes()+"  "+year()+".";
+    if (lug.equals("")) {
+      firma = mes()+"  "+year()+".";
+    } else {
+      firma = lug+",  "+mes()+"  "+year()+".";
+    }
   }
 
   void escribir() {
@@ -128,7 +129,7 @@ class Estrofa {
     textSize(15);
     textAlign(RIGHT);
     text(firma.toUpperCase(), width-10, height - map(c, 3, 7, 90, 35));
-    
+
     println();
   }
 

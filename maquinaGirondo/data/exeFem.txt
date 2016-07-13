@@ -26,6 +26,7 @@ densidad
 rechonchez
 visión
 luz
+luces
 virgen
 carne
 vírgenes

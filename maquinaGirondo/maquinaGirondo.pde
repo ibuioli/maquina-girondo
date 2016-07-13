@@ -1,3 +1,17 @@
+/*
+Máquina Girondo beta 1.1
+ 
+ Processing versión: 3.1.1
+ KeTai versión: 12
+ */
+
+import ketai.sensors.*;
+
+/*LOCALIZACION*/
+KetaiLocation sitio;
+JSONObject json;
+String lug;
+
 Estrofa poema;
 String[] prep, nums, adj;
 String[] cuerpo, lugar, persona, prenda, resto;
@@ -5,13 +19,19 @@ String[] conj1, conj2, inf;
 String[] exeFem, exeMas;
 PImage back;
 PFont times;
+double lat, lon, alt;
 int tema;  //0: calle, 1: noche, 2: plaza, 3:mar
+
+//App de Celulares
+//boolean android = true;
+//App de Escritorio
+boolean android = false;
 
 void setup() {
   //fullScreen(P2D);    //App Celulares
   //orientation(PORTRAIT);
-  size(320, 480, P2D);  //App de escritorio
-  
+  size(320, 480, P2D);  //App de Escritorio
+
   ////CARGA DE DATOS////
 
   prep = loadStrings("preposiciones.txt");
@@ -31,27 +51,41 @@ void setup() {
 
   back = loadImage("back.jpg");
   times = createFont("timesbd.ttf", 48, true);
-  
+  lug = "";
+
+  if (android) {
+    if (sitio == null) {
+      sitio = new KetaiLocation(this);
+    }
+    if (sitio.getProvider() == "none") {
+      lug = "";
+      tema = floor(random(0, 3.99));
+    } else {
+      json = loadJSONObject("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+"%2C"+lon+"&language=es");
+      lug = json.getJSONArray("results").getJSONObject(1).getJSONArray("address_components").getJSONObject(0).getString("short_name");
+      tema = floor(random(0, 3.99));
+    }
+  } else {
+    lug = "";
+  }
+
   tema = floor(random(0, 3.99));   //Definir Tema
   poema = new Estrofa( byte( floor(random(3, 7.99)) ) );  //Cantidad de Versos
-  
+
   ////GRAFICA GRAL////
   fill(0, 250);
   textFont(times);
 }
 
 void draw() {
+  if (android) {
+    if (sitio == null) {
+      sitio = new KetaiLocation(this);
+    }
+  }
+
   background(198, 186, 146);
   image(back, 0, 0, width, height);
-  
-  textSize(10);
-  textAlign(RIGHT);
-  text("La Máquina Girondo beta 1.0.1", width-6, height-6);
 
   poema.escribir();
-}
-
-void mousePressed() {
-  tema = floor(random(0, 3.99));   //Nueva Tema
-  poema = new Estrofa( byte( floor(random(3, 7.99)) ) );  //Nuevo Poema
 }
