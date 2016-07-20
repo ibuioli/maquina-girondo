@@ -109,7 +109,11 @@ String adjGenero(String sus2) {
       }
     }
   } else {
-    adj2 = sadj;
+    if (fem) {
+      adj2 = sadj+"a";
+    } else {
+      adj2 = sadj+"o";
+    }
   }
 
   return adj2;

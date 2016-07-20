@@ -1,8 +1,8 @@
 /*
-Máquina Girondo beta 1.1.1
+Máquina Girondo beta 1.2
  
- Processing versión: 3.1.1
- KeTai versión: 12
+ Processing versión: 3.1.1+
+ KeTai versión: 12+
  */
 
 import ketai.sensors.*;
@@ -72,12 +72,16 @@ void draw() {
       if (sitio == null) {
         sitio = new KetaiLocation(this);
       }
-      if (sitio.getProvider() == "none") {
+      if (sitio.getProvider().equals("none")) {
         lug = "";
         tema = floor(random(0, 3.99));
       } else {
         json = loadJSONObject("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+"%2C"+lon+"&language=es");
-        lug = json.getJSONArray("results").getJSONObject(1).getJSONArray("address_components").getJSONObject(0).getString("short_name");
+        if (sitio.getProvider().equals("gps")) {
+          lug = json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").getJSONObject(2).getString("short_name");
+        } else {
+          lug = json.getJSONArray("results").getJSONObject(1).getJSONArray("address_components").getJSONObject(0).getString("short_name");
+        }
         tema = floor(random(0, 3.99));
       }
     } else {

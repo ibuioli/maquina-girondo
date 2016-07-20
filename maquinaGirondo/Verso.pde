@@ -185,6 +185,7 @@ class Verso {
       //Corrección de errores excepcionales
       verso = verso.replace("violeto", "violeta");
       verso = verso.replace("violetos", "violetas");
+      verso = verso.replace("la agua", "el agua");
     }
     if (exc) {
       verso = "¡"+letraCapital(verso)+"!";

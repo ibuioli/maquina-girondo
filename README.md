@@ -1,5 +1,5 @@
 # Maquina Girondo
-Versión Beta 1.1.1
+Versión Beta 1.2
 
 Algortimo de Textos Generativos (Versos y Poemas) con partido estético del poeta argentino Oliverio Girondo.
 
@@ -13,6 +13,10 @@ El sistema selecciona un verso al azar y a partir de ahí los siguientes versos 
 ### clase Estrofa:
 
 * Cantidad de Versos [byte] [mayor a 1]
+
+### clase Titulo:
+
+* Un String [El String de una Estrofa]
 
 ### App testeada en:
 

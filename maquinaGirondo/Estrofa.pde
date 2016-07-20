@@ -1,6 +1,7 @@
 /*Clase generadora de Estrofa*/
 class Estrofa {
   ArrayList<Verso> versos;
+  Titulo titulo;
   String t, firma;
   byte c;
 
@@ -119,9 +120,15 @@ class Estrofa {
     } else {
       firma = lug+",  "+mes()+"  "+year()+".";
     }
+    
+    //GENERAR TITULO//
+    titulo = new Titulo(t);
   }
 
   void escribir() {
+    textSize(30);
+    textAlign(CENTER);
+    text(titulo.texto().toUpperCase(), 0, map(c, 3, 7, 50, 20), width-20, height);
     textAlign(LEFT, CENTER);
     textSize(24);
     textLeading(24);

@@ -29,7 +29,6 @@ apache
 arcadas
 arco
 arena
-arpegia
 aserrín
 atrio
 aullido
