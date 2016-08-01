@@ -1,5 +1,5 @@
 /*
-Máquina Girondo beta 1.2.1
+Máquina Girondo beta 1.2
  
  Processing versión: 3.1.1+
  KeTai versión: 12+
@@ -30,7 +30,7 @@ boolean android = false;
 boolean carga;
 
 void setup() {
-  //fullScreen();    //App Celulares  
+  //fullScreen(P2D);    //App Celulares  
   //orientation(PORTRAIT);
   size(320, 480, P2D);  //App de Escritorio
   background(198, 186, 146);
@@ -53,8 +53,7 @@ void setup() {
   inf = loadStrings("vocabulario/verb/infinitivos.txt");
 
   back = loadImage("back.jpg");
-  back.resize(width, height);
-  times = createFont("timesbd.ttf", 78, true);
+  times = createFont("timesbd.ttf", 48, true);
   lug = "";
 
   ////GRAFICA GRAL////
@@ -94,7 +93,7 @@ void draw() {
   }
 
   background(198, 186, 146);
-  image(back, 0, 0);
+  image(back, 0, 0, width, height);
 
   poema.escribir();
 }

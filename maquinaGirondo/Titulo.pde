@@ -18,9 +18,8 @@ class Titulo {
     poema = poema.replace(" les ", " ");
     poema = poema.replace(" con ", " ");
     poema = poema.replace(" en ", " ");
-    poema = poema.replace(" su ", " ");
-    poema = poema.replace(" sus ", " ");
     poema = poema.replace(" están ", " ");
+    poema = poema.replace("están ", " ");
     poema = poema.replace("!", " ");
     poema = poema.replace("¡", " ");
     poema = poema.replace("?", " ");
@@ -46,9 +45,9 @@ class Titulo {
 
     if (r <= 20) {
       t = lug;
-    } else if (r > 20 && r <= 30) {
+    } else if (r > 20 && r <= 25) {
       t = "Croquis en "+lug;
-    } else if (r > 30 && r <= 35) {
+    } else if (r > 25 && r <= 30) {
       t = "Fiesta en "+lug;
     }else{
       t = lista[ int(random(0, lista.length-1)) ];
