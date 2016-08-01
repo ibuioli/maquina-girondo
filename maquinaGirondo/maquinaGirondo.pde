@@ -1,7 +1,7 @@
 /*
-Máquina Girondo beta 1.2.1
+Máquina Girondo beta 1.2.2
  
- Processing versión: 3.1.1+
+ Processing versión: 3+
  KeTai versión: 12+
  */
 
@@ -30,7 +30,7 @@ boolean android = false;
 boolean carga;
 
 void setup() {
-  //fullScreen();    //App Celulares  
+  //fullScreen();    //App Celulares    
   //orientation(PORTRAIT);
   size(320, 480, P2D);  //App de Escritorio
   background(198, 186, 146);
@@ -58,7 +58,7 @@ void setup() {
   lug = "";
 
   ////GRAFICA GRAL////
-  fill(0, 250);
+  fill(0, 240);
   textFont(times);
 }
 

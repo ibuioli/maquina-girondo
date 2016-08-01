@@ -120,24 +120,28 @@ class Estrofa {
     } else {
       firma = lug+",  "+mes()+"  "+year()+".";
     }
-    
+
     //GENERAR TITULO//
-    titulo = new Titulo(t);
+    titulo = new Titulo(t.toLowerCase());
   }
 
   void escribir() {
-    textSize(map(height, 480, 1280, 30, 76));
+    if (titulo.texto().length() <= 14) {
+      textSize(map(height, 480, 1280, 30, 76));
+    } else if (titulo.texto().length() > 14 && titulo.texto().length() < 18) {
+      textSize(map(height, 480, 1280, 26, 70));
+    } else if (titulo.texto().length() >= 18) {
+      textSize(map(height, 480, 1280, 24, 64));
+    }
     textAlign(CENTER);
-    text(titulo.texto().toUpperCase(), 0, map(c, 3, 7, map(height, 480, 1280, 50, 110), map(height, 480, 1280, 20, 60)), width-20, height);
+    text(titulo.texto().toUpperCase(), 0, map(c, 3, 7, map(height, 480, 1280, 50, 110), map(height, 480, 1280, 20, 60)), width-10, height);
     textAlign(LEFT, CENTER);
     textSize(map(height, 480, 1280, 22, 58));
     textLeading(map(height, 480, 1280, 22, 58));
-    text(t, map(height, 480, 1280, 10, 30), 0, width-map(height, 480, 1280, 20, 60), height);
+    text(t, map(height, 480, 1280, 10, 30), 0, width-map(height, 480, 1280, 10, 30), height);
     textSize(map(height, 480, 1280, 15, 38));
     textAlign(RIGHT);
     text(firma.toUpperCase(), width-10, height - map(c, 3, 7, map(height, 480, 1280, 90, 120), map(height, 480, 1280, 35, 70)));
-
-    println();
   }
 
   String texto() {
