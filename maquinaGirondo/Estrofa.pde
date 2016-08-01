@@ -126,16 +126,16 @@ class Estrofa {
   }
 
   void escribir() {
-    textSize(30);
+    textSize(map(height, 480, 1280, 30, 76));
     textAlign(CENTER);
-    text(titulo.texto().toUpperCase(), 0, map(c, 3, 7, 50, 20), width-20, height);
+    text(titulo.texto().toUpperCase(), 0, map(c, 3, 7, map(height, 480, 1280, 50, 110), map(height, 480, 1280, 20, 60)), width-20, height);
     textAlign(LEFT, CENTER);
-    textSize(24);
-    textLeading(24);
-    text(t, 10, 0, width-20, height);
-    textSize(15);
+    textSize(map(height, 480, 1280, 22, 58));
+    textLeading(map(height, 480, 1280, 22, 58));
+    text(t, map(height, 480, 1280, 10, 30), 0, width-map(height, 480, 1280, 20, 60), height);
+    textSize(map(height, 480, 1280, 15, 38));
     textAlign(RIGHT);
-    text(firma.toUpperCase(), width-10, height - map(c, 3, 7, 90, 35));
+    text(firma.toUpperCase(), width-10, height - map(c, 3, 7, map(height, 480, 1280, 90, 120), map(height, 480, 1280, 35, 70)));
 
     println();
   }
