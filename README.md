@@ -1,5 +1,9 @@
 # Maquina Girondo
+<<<<<<< HEAD
 Versión Beta 1.2.2
+=======
+Versión Beta 1.2.1
+>>>>>>> origin/master
 
 Algortimo de Textos Generativos (Versos y Poemas) con partido estético del poeta argentino Oliverio Girondo.
 
@@ -24,7 +28,10 @@ Se parte de un verso generado de forma completamente aleatoria empleando datos d
 
 ##### Testeada en Emuladores:
 
+<<<<<<< HEAD
 * Nexus 1 - Android 4.1.2
+=======
+>>>>>>> origin/master
 * Nexus 4 - Android 4.1.2
 
 
