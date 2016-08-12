@@ -1,0 +1,15 @@
+﻿
+dos
+tres
+cuatro
+cinco
+seis
+siete
+ocho
+nueve
+diez
+sesenta
+ochenta
+cien
+cuatrocientos
+mil
