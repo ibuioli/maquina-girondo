@@ -135,6 +135,8 @@ class Estrofa {
     }
     textAlign(CENTER);
     text(titulo.texto().toUpperCase(), 0, map(c, 3, 7, map(height, 480, 1280, 50, 110), map(height, 480, 1280, 20, 60)), width-10, height);
+    text(titulo.texto().toUpperCase(), 1, map(c, 3, 7, map(height, 480, 1280, 50, 110), map(height, 480, 1280, 20, 60)), width-10, height);
+    text(titulo.texto().toUpperCase(), -1, map(c, 3, 7, map(height, 480, 1280, 50, 110), map(height, 480, 1280, 20, 60)), width-10, height);
     textAlign(LEFT, CENTER);
     textSize(map(height, 480, 1280, 22, 58));
     textLeading(map(height, 480, 1280, 22, 58));

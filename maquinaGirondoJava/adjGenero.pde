@@ -1,4 +1,6 @@
 String adjGenero(String sus2) {
+  sus2 = sus2.replace("la ", "");
+  sus2 = sus2.replace("las ", "");
   String adj2;
   String sub1 = sus2.substring(sus2.length()-1, sus2.length());
   String suadj = adj[(int)random(1, adj.length)];
@@ -17,13 +19,13 @@ String adjGenero(String sus2) {
   }
 
   for (int i=0; i < exeFem.length; i++) {
-    if ( sus2.equals(exeFem[i]) ) {
+    if ( sus2.equals(exeFem[i]) || sus2.equals(letraCapital(exeFem[i])) ) {
       fem = true;
       mas = false;
     }
   }
   for (int i=0; i < exeMas.length; i++) {
-    if ( sus2.equals(exeMas[i]) ) {
+    if ( sus2.equals(exeMas[i]) || sus2.equals(letraCapital(exeMas[i])) ) {
       mas = true;
       fem = false;
     }

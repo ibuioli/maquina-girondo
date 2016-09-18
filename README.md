@@ -1,5 +1,5 @@
 # Maquina Girondo
-Versión Beta 1.2.2
+Versión Beta 1.2.3
 
 Algortimo de Textos Generativos (Versos y Poemas) con partido estético del poeta argentino Oliverio Girondo.
 
@@ -7,6 +7,7 @@ Se parte de un verso generado de forma completamente aleatoria empleando datos d
 Presente en versiones:
 
 *Versión Java-Android (Processing)
+*Version JavaScript (P5.js)
 *Versión JavaScript de bajos recursos (P5.js)
 
 ### clase Verso:

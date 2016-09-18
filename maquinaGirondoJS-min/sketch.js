@@ -36,6 +36,8 @@ function draw() {
 
  poema.escribir();
  print(poema.fonetica());
+
+ noLoop();
 }
 
 /*Clase generadora de Estrofa*/
@@ -131,10 +133,12 @@ function Estrofa(c_) {
  this.fon = this.fon.replace("undefined", "");
 
  this.escribir = function() {
+  pop();
   textAlign(LEFT, CENTER);
   textSize(20);
   textLeading(20);
   text(this.t, 10, 0, width - 10, height);
+  push();
  }
 
  this.texto = function() {
@@ -528,6 +532,8 @@ function esSingular(caso) {
 
 //ADJECTIVO
 function adjGenero(sus2) {
+ sus2 = sus2.replace("la ", "");
+ sus2 = sus2.replace("las ", "");
  var adj2;
  var sub1 = sus2.substring(sus2.length - 1, sus2.length);
  var suadj = adj[int(random(1, adj.length))];
@@ -546,13 +552,13 @@ function adjGenero(sus2) {
  }
 
  for (i = 0; i < exeFem.length; i++) {
-  if (sus2 === exeFem[i]) {
+  if (sus2 === exeFem[i] sus2 === letraCapital(exeFem[i]) ) {
    fem = true;
    mas = false;
   }
  }
  for (i = 0; i < exeMas.length; i++) {
-  if (sus2 === exeMas[i]) {
+  if (sus2 === exeMas[i] || sus2 === letraCapital(exeMas[i]) ) {
    mas = true;
    fem = false;
   }
@@ -653,4 +659,5 @@ function mousePressed() {
  tema = floor(random(0, 3.99));
  //linea = new Verso(byte(floor(random(1, 7.99))), byte(floor(random(0, 2.99))));
  poema = new Estrofa(byte(floor(random(3, 7.99)))); //Nuevo Poema
+ draw();
 }
