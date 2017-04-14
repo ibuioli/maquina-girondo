@@ -1,4 +1,4 @@
-String esSingular(int caso){
+public String esSingular(int caso){
   String sus2;
   if(caso == 0){
     sus2 = cuerpo[(int)random(1, cuerpo.length)];

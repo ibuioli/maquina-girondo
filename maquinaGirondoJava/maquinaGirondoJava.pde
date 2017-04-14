@@ -1,10 +1,15 @@
-/*
-Máquina Girondo beta 1.2.3
+/***************************
+ 
+ Máquina Girondo beta 1.2.4
  
  Processing versión: 3+
  KeTai versión: 12+
- */
+ 
+ **************************/
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.content.Context;
 import ketai.sensors.*;
 
 /*LOCALIZACION*/
@@ -23,18 +28,18 @@ double lat, lon, alt;
 int tema;  //0: calle, 1: noche, 2: plaza, 3:mar
 
 //App de Celulares
-//boolean android = true;
+boolean android = true;
 //App de Escritorio
-boolean android = false;
+//boolean android = false;
 
 boolean carga;
 
 void setup() {
-  //fullScreen();    //App Celulares    
-  //orientation(PORTRAIT);
-  size(320, 480, P2D);  //App de Escritorio
+  fullScreen();    //App Celulares    
+  orientation(PORTRAIT);
+  //size(320, 480, P2D);  //App de Escritorio
   background(198, 186, 146);
-  
+
   ////CARGA DE DATOS////
 
   prep = loadStrings("preposiciones.txt");
@@ -63,11 +68,6 @@ void setup() {
 }
 
 void draw() {
-  if (android) {
-    if (sitio == null) {
-      sitio = new KetaiLocation(this);
-    }
-  }
   if (carga == false) {
     if (android) {
       if (sitio == null) {
@@ -77,11 +77,29 @@ void draw() {
         lug = "";
         tema = floor(random(0, 3.99));
       } else {
-        json = loadJSONObject("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+"%2C"+lon+"&language=es");
-        if (sitio.getProvider().equals("gps")) {
-          lug = json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").getJSONObject(2).getString("short_name");
+        if (isNetworkAvailable()) {
+          json = loadJSONObject("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+"%2C"+lon+"&language=es");
         } else {
-          lug = json.getJSONArray("results").getJSONObject(1).getJSONArray("address_components").getJSONObject(0).getString("short_name");
+          lug = "";
+        }
+        if (sitio.getProvider().equals("gps")) {
+          if (isNetworkAvailable()) {
+            lug = json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").getJSONObject(2).getString("short_name");
+          } else {
+            lug = "";
+          }
+        } else {
+          if (isNetworkAvailable()) {
+            lug = json.getJSONArray("results").getJSONObject(1).getJSONArray("address_components").getJSONObject(0).getString("short_name");
+
+            String n[] = match(lug, "[0-9]");
+
+            if (n != null) {
+              lug = json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").getJSONObject(2).getString("short_name");
+            }
+          } else {
+            lug = "";
+          }
         }
         tema = floor(random(0, 3.99));
       }

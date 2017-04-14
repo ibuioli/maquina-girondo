@@ -1,4 +1,4 @@
-String mes() {
+public String mes() {
   String m;
   int mes = month();
 

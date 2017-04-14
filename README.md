@@ -1,5 +1,5 @@
 # Maquina Girondo
-Versión Beta 1.2.3
+Versión Beta 1.2.4
 
 Algortimo de Textos Generativos (Versos y Poemas) con partido estético del poeta argentino Oliverio Girondo.
 
@@ -26,6 +26,7 @@ Presente en versiones:
 ##### Testeada en Dispositivos:
 
 * Samsung Galaxy Fame Lite
+* Huawey SCL-L03
 
 ##### Testeada en Emuladores:
 

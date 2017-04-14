@@ -1,4 +1,4 @@
-String conVerb(String sus2){
+public String conVerb(String sus2){
   String sub1 = sus2.substring(sus2.length()-1, sus2.length());
   String verb;
   

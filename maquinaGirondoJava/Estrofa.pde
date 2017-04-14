@@ -1,5 +1,5 @@
 /*Clase generadora de Estrofa*/
-class Estrofa {
+public class Estrofa {
   ArrayList<Verso> versos;
   Titulo titulo;
   String t, firma;

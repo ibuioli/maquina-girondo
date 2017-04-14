@@ -1,10 +1,10 @@
-class Titulo {
+public class Titulo {
   String t;
   String[] lista;
 
   Titulo(String poema_) {
     String poema = poema_;
-    
+
     poema = poema.replace("\n", " ");
     poema = depurarPalabras(poema);
     poema = poema.replace("!", " ");
@@ -13,7 +13,7 @@ class Titulo {
     poema = poema.replace("¿", " ");
     poema = poema.replace(",", " ");
     poema = poema.replace(".", " ");
-    poema = poema.replace(";",  " ");
+    poema = poema.replace(";", " ");
     for (int i=0; i < conj1.length; i++) {
       poema = poema.replace(" "+conj1[i]+" ", " ");
     }
@@ -45,8 +45,8 @@ class Titulo {
         t = lista[ int(random(0, lista.length-1)) ];
       }
     }
-    
-    if(t.equals("") || t.equals(" ")){
+
+    if (t.equals("") || t.equals(" ")) {
       t = lista[ int(random(0, lista.length-1)) ];
     }
   }

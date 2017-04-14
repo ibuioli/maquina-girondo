@@ -1,4 +1,4 @@
-String depurarPalabras(String p) {
+public String depurarPalabras(String p) {
   p = p.replace(" a ", " ");
   p = p.replace(" al ", " ");
   p = p.replace(" de ", " ");

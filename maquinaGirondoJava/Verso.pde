@@ -1,5 +1,5 @@
 /*Clase generadora de Versos*/
-class Verso {
+public class Verso {
   String[] palabras;
   String verso;
   byte c, e;

@@ -1,4 +1,4 @@
-String esPlural(int caso){
+public String esPlural(int caso){
   String sus2;
   if(caso == 0){
     sus2 = cuerpo[(int)random(1, cuerpo.length)];

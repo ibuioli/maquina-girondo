@@ -1,4 +1,4 @@
-String temaLugar() {
+public String temaLugar() {
   String nlugar = "";
 
   if (tema == 0) {  //calle

@@ -1,4 +1,4 @@
-String conArt(String sus2) {
+public String conArt(String sus2) {
   String fsus;
   String sub1 = sus2.substring(sus2.length()-1, sus2.length());
   boolean fem = false;

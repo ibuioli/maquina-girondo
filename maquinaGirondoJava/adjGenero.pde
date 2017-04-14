@@ -1,4 +1,4 @@
-String adjGenero(String sus2) {
+public String adjGenero(String sus2) {
   sus2 = sus2.replace("la ", "");
   sus2 = sus2.replace("las ", "");
   String adj2;
