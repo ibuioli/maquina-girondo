@@ -1,6 +1,6 @@
 /***************************
  
- Máquina Girondo beta 1.2.4
+ Máquina Girondo beta 1.2.5
  
  Processing versión: 3+
  KeTai versión: 12+
@@ -9,7 +9,7 @@
 
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.content.Context;
+import android.content.Context;//Comentar para Java de Escritorio*/
 import ketai.sensors.*;
 
 /*LOCALIZACION*/
@@ -26,6 +26,8 @@ PImage back;
 PFont times;
 double lat, lon, alt;
 int tema;  //0: calle, 1: noche, 2: plaza, 3:mar
+int ppos;
+int alpha = 250;
 
 //App de Celulares
 boolean android = true;
@@ -34,7 +36,7 @@ boolean android = true;
 
 boolean carga;
 
-void setup() {
+public void setup() {
   fullScreen();    //App Celulares    
   orientation(PORTRAIT);
   //size(320, 480, P2D);  //App de Escritorio
@@ -63,11 +65,10 @@ void setup() {
   lug = "";
 
   ////GRAFICA GRAL////
-  fill(10, 8, 0, 250);
   textFont(times);
 }
 
-void draw() {
+public void draw() {
   if (carga == false) {
     if (android) {
       if (sitio == null) {
@@ -113,6 +114,12 @@ void draw() {
 
   background(198, 186, 146);
   image(back, 0, 0);
-
+  
+  pushMatrix();
+  pushStyle();
+  translate(ppos, 0);
+  fill(10, 8, 0, alpha);
   poema.escribir();
+  popStyle();
+  popMatrix();
 }
