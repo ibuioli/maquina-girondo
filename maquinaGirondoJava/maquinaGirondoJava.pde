@@ -1,6 +1,6 @@
 /***************************
  
- Máquina Girondo beta 1.2.5
+ Máquina Girondo beta 1.3.0
  
  Processing versión: 3+
  KeTai versión: 12+
@@ -14,7 +14,7 @@ import ketai.sensors.*;
 
 /*LOCALIZACION*/
 KetaiLocation sitio;
-JSONObject json;
+JSONObject json, jsonx;
 String lug;
 
 Estrofa poema;
@@ -26,8 +26,13 @@ PImage back;
 PFont times;
 double lat, lon, alt;
 int tema;  //0: calle, 1: noche, 2: plaza, 3:mar
+boolean noche;
 int ppos;
 int alpha = 250;
+///////////////////
+float posxEl;
+boolean s;
+///////////////////
 
 //App de Celulares
 boolean android = true;
@@ -64,8 +69,16 @@ public void setup() {
   times = createFont("timesbd.ttf", 78, true);
   lug = "";
 
+  ////DIA o NOCHE/////
+  if (hour() >= 19 || hour() >= 0 && hour() <= 5) {
+    noche = true;
+  } else {
+    noche = false;
+  }
+
   ////GRAFICA GRAL////
   textFont(times);
+  posxEl = width;
 }
 
 public void draw() {
@@ -79,30 +92,62 @@ public void draw() {
         tema = floor(random(0, 3.99));
       } else {
         if (isNetworkAvailable()) {
-          json = loadJSONObject("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+"%2C"+lon+"&language=es");
+          //json = loadJSONObject("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+"%2C"+lon+"&language=es");
+          json = loadJSONObject("http://api.geonames.org/findNearbyPlaceNameJSON?lat="+lat+"&lng="+lon+"&lang=es&username=ibuioli");
+          jsonx = loadJSONObject("http://api.geonames.org/findNearbyJSON?lat="+lat+"&lng="+lon+"&lang=es&username=ibuioli");
         } else {
           lug = "";
         }
         if (sitio.getProvider().equals("gps")) {
           if (isNetworkAvailable()) {
-            lug = json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").getJSONObject(2).getString("short_name");
+            //lug = json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").getJSONObject(2).getString("short_name");
+            if (json.getJSONArray("geonames").size() != 0) {
+              lug = json.getJSONArray("geonames").getJSONObject(0).getString("name");
+            } else {
+              lug = "";
+            }
           } else {
             lug = "";
           }
         } else {
           if (isNetworkAvailable()) {
-            lug = json.getJSONArray("results").getJSONObject(1).getJSONArray("address_components").getJSONObject(0).getString("short_name");
-
-            String n[] = match(lug, "[0-9]");
-
-            if (n != null) {
-              lug = json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").getJSONObject(2).getString("short_name");
+            //lug = json.getJSONArray("results").getJSONObject(1).getJSONArray("address_components").getJSONObject(0).getString("short_name");
+            if (json.getJSONArray("geonames").size() != 0) {
+              lug = json.getJSONArray("geonames").getJSONObject(0).getString("name");
+            } else {
+              lug = "";
             }
           } else {
             lug = "";
           }
         }
-        tema = floor(random(0, 3.99));
+        /*SELECCION TEMA*/
+        if (jsonx.getJSONArray("geonames").size() != 0) {
+          if (jsonx.getJSONArray("geonames").getJSONObject(0).getString("fcl").equals("H") ||
+            jsonx.getJSONArray("geonames").getJSONObject(0).getString("fcl").equals("T") ||
+            jsonx.getJSONArray("geonames").getJSONObject(0).getString("fcl").equals("U")) {
+            if (noche) {
+              tema = 1;
+            } else {
+              tema = 3;
+            }
+          } else if (jsonx.getJSONArray("geonames").getJSONObject(0).getString("fcl").equals("L") ||
+            jsonx.getJSONArray("geonames").getJSONObject(0).getString("fcl").equals("V")) {
+            if (noche) {
+              tema = 1;
+            } else {
+              tema = 2;
+            }
+          } else {
+            if (noche) {
+              tema = 1;
+            } else {
+              tema = 0;
+            }
+          }
+        } else {
+          tema = floor(random(0, 3.99));
+        }
       }
     } else {
       lug = "";
@@ -112,9 +157,8 @@ public void draw() {
     carga = true;
   }
 
-  background(198, 186, 146);
   image(back, 0, 0);
-  
+
   pushMatrix();
   pushStyle();
   translate(ppos, 0);
@@ -122,4 +166,8 @@ public void draw() {
   poema.escribir();
   popStyle();
   popMatrix();
+
+  if (s == false) {
+    startApp();
+  }
 }
