@@ -1,10 +1,10 @@
 /***************************
- 
- Máquina Girondo beta 1.3.0
- 
+
+ Máquina Girondo beta 1.3.1
+
  Processing versión: 3+
  KeTai versión: 12+
- 
+
  **************************/
 
 import android.net.ConnectivityManager;
@@ -42,10 +42,10 @@ boolean android = true;
 boolean carga;
 
 public void setup() {
-  fullScreen();    //App Celulares    
-  orientation(PORTRAIT);
+  fullScreen();    //App Celulares
   //size(320, 480, P2D);  //App de Escritorio
-  background(198, 186, 146);
+  orientation(PORTRAIT);
+  background(233, 226, 198);
 
   ////CARGA DE DATOS////
 
@@ -79,6 +79,12 @@ public void setup() {
   ////GRAFICA GRAL////
   textFont(times);
   posxEl = width;
+  pushStyle();
+  fill(10, 8, 0, 250);
+  textAlign(CENTER, CENTER);
+  textSize(map(height, 480, 1280, 22, 36));
+  text("Cargando...", width/2, height/2);
+  popStyle();
 }
 
 public void draw() {
@@ -92,15 +98,13 @@ public void draw() {
         tema = floor(random(0, 3.99));
       } else {
         if (isNetworkAvailable()) {
-          //json = loadJSONObject("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+"%2C"+lon+"&language=es");
-          json = loadJSONObject("http://api.geonames.org/findNearbyPlaceNameJSON?lat="+lat+"&lng="+lon+"&lang=es&username=ibuioli");
-          jsonx = loadJSONObject("http://api.geonames.org/findNearbyJSON?lat="+lat+"&lng="+lon+"&lang=es&username=ibuioli");
+          json = loadJSONObject("http://api.geonames.org/findNearbyPlaceNameJSON?lat="+lat+"&lng="+lon+"&lang=es&style=short&username=ibuioli");
+          jsonx = loadJSONObject("http://api.geonames.org/findNearbyJSON?lat="+lat+"&lng="+lon+"&lang=es&style=short&username=ibuioli");
         } else {
           lug = "";
         }
         if (sitio.getProvider().equals("gps")) {
           if (isNetworkAvailable()) {
-            //lug = json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").getJSONObject(2).getString("short_name");
             if (json.getJSONArray("geonames").size() != 0) {
               lug = json.getJSONArray("geonames").getJSONObject(0).getString("name");
             } else {
@@ -111,7 +115,6 @@ public void draw() {
           }
         } else {
           if (isNetworkAvailable()) {
-            //lug = json.getJSONArray("results").getJSONObject(1).getJSONArray("address_components").getJSONObject(0).getString("short_name");
             if (json.getJSONArray("geonames").size() != 0) {
               lug = json.getJSONArray("geonames").getJSONObject(0).getString("name");
             } else {
@@ -153,6 +156,7 @@ public void draw() {
       lug = "";
       tema = floor(random(0, 3.99));   //Definir Tema
     }
+    lug = depCiudad(lug);
     poema = new Estrofa( byte( floor(random(3, 7.99)) ) );  //Cantidad de Versos
     carga = true;
   }
