@@ -29,3 +29,12 @@ public String depurarPalabras(String p) {
 
   return p;
 }
+
+public String depCiudad(String lug){
+  String l = lug;
+  l = l.replace("Palermo Hollywood", "Palermo");
+  l = l.replace("General", "Gral.");
+  l = l.replace("Presidente", "Pte.");
+
+  return l;
+}

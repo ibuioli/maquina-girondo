@@ -1,10 +1,10 @@
 /***************************
- 
- Máquina Girondo beta 1.3.2
- 
+
+ Máquina Girondo beta 1.3.3
+
  Processing versión: 3+
  KeTai versión: 12+
- 
+
  **************************/
 
 import android.net.ConnectivityManager;
@@ -88,12 +88,7 @@ public void draw() {
   image(back, 0, 0);
 
   if (!carga) {
-    pushStyle();
-    fill(10, 8, 0, random(50, 255));
-    textAlign(CENTER, CENTER);
-    textSize(map(height, 480, 1280, 22, 36));
-    text("Cargando...", width/2, height/2);
-    popStyle();
+    loader();
   } else {
     pushMatrix();
     pushStyle();
