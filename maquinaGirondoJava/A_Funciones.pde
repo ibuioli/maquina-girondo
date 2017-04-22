@@ -5,12 +5,12 @@ public void mouseDragged() {
 }
 
 public void mouseReleased() {
-  if (ppos <= -width/2) {
+  if (ppos <= -width/1.5) {
     s = true;
     poema = new Estrofa( byte( floor(random(3, 7.99)) ) );  //Nuevo Poema
     ppos = 0;
     alpha = 250;
-  } else if (ppos > -width/2) {
+  } else if (ppos > -width/1.5) {
     ppos = 0;
     alpha = 250;
   }

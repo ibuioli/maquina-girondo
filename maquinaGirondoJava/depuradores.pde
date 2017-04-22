@@ -1,32 +1,26 @@
 public String depurarPalabras(String p) {
-  p = p.replace(" a ", " ");
-  p = p.replace(" al ", " ");
-  p = p.replace(" de ", " ");
-  p = p.replace(" o ", " ");
-  p = p.replace(" y ", " ");
-  p = p.replace(" el ", " ");
-  p = p.replace(" del ", " ");
-  p = p.replace(" los ", " ");
-  p = p.replace(" las ", " ");
-  p = p.replace(" la ", " ");
-  p = p.replace(" le ", " ");
-  p = p.replace(" les ", " ");
-  p = p.replace(" con ", " ");
-  p = p.replace(" en ", " ");
-  p = p.replace(" su ", " ");
-  p = p.replace(" sus ", " ");
-  p = p.replace(" están ", " ");
-  p = p.replace("están ", " ");
-  p = p.replace(" si ", " ");
-  p = p.replace(" se ", " ");
-  p = p.replace(" no ", " ");
-  p = p.replace("  ", " ");
-  p = p.replace("   ", " ");
-  p = p.replace("    ", " ");
-  p = p.replace("     ", " ");
-  p = p.replace("      ", " ");
-  p = p.replace("       ", " ");
-
+  p = p.replaceAll("\\ba\\b", " ");
+  p = p.replaceAll("\\bal\\b", " ");
+  p = p.replaceAll("\\bde\\b", " ");
+  p = p.replaceAll("\\bo\\b", " ");
+  p = p.replaceAll("\\by\\b", " ");
+  p = p.replaceAll("\\bel\\b", " ");
+  p = p.replaceAll("\\bdel\\b", " ");
+  p = p.replaceAll("\\blos\\b", " ");
+  p = p.replaceAll("\\blas\\b", " ");
+  p = p.replaceAll("\\bla\\b", " ");
+  p = p.replaceAll("\\ble\\b", " ");
+  p = p.replaceAll("\\bles\\b", " ");
+  p = p.replaceAll("\\bcon\\b", " ");
+  p = p.replaceAll("\\ben\\b", " ");
+  p = p.replaceAll("\\bsu\\b", " ");
+  p = p.replaceAll("\\bsus\\b", " ");
+  p = p.replaceAll("\\bestán\\b", " ");
+  p = p.replaceAll("\\bsi\\b", " ");
+  p = p.replaceAll("\\bse\\b", " ");
+  p = p.replaceAll("\\bno\\b", " ");
+  p = p.trim().replaceAll(" +", " ");
+  
   return p;
 }
 

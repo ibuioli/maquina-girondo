@@ -114,7 +114,6 @@ public class Estrofa {
     }
 
     //GENERACIÓN DE FIRMA//
-
     if (lug.equals("")) {
       firma = mes()+"  "+year()+".";
     } else {

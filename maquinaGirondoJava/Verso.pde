@@ -105,7 +105,7 @@ public class Verso {
       nada = true;
       palabras[0] = resto[(int)random(1, resto.length)];
       palabras[1] = adjGenero(palabras[0])+".";
-      palabras[2] = lugar[(int)random(1, lugar.length)];
+      palabras[2] = letraCapital( lugar[(int)random(1, lugar.length)] );
       palabras[3] = adjGenero(palabras[2]);
     }
 
@@ -168,11 +168,11 @@ public class Verso {
 
     if (nada == false) {  //Verso Normal
       if (comilla == false) {  //Comillas al verso
-        if (random(0, 100) <= 15) { //Exclamar o No
+        if (random(0, 100) <= 25) { //Exclamar o No
           exc = true;
         }
 
-        if (exc == false && random(0, 100) <= 2) { //Preguntar o No
+        if (exc == false && random(0, 100) <= 10) { //Preguntar o No
           pre = true;
         }
       }
@@ -180,12 +180,12 @@ public class Verso {
 
     //Correcciones de Texto
     if (verso.equals("") == false) {
-      verso = verso.replace(" a el ", " al ");
-      verso = verso.replace(" de el ", " del ");
+      verso = verso.replaceAll(" a el ", " al ");
+      verso = verso.replaceAll(" de el ", " del ");
       //Corrección de errores excepcionales
-      verso = verso.replace("violeto", "violeta");
-      verso = verso.replace("violetos", "violetas");
-      verso = verso.replace("la agua", "el agua");
+      verso = verso.replaceAll("violeto", "violeta");
+      verso = verso.replaceAll("violetos", "violetas");
+      verso = verso.replaceAll("la agua", "el agua");
     }
     if (exc) {
       verso = "¡"+letraCapital(verso)+"!";

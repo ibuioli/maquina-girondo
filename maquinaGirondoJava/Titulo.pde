@@ -5,15 +5,15 @@ public class Titulo {
   Titulo(String poema_) {
     String poema = poema_;
 
-    poema = poema.replace("\n", " ");
+    poema = poema.replaceAll("\n", " ");
     poema = depurarPalabras(poema);
-    poema = poema.replace("!", " ");
-    poema = poema.replace("¡", " ");
-    poema = poema.replace("?", " ");
-    poema = poema.replace("¿", " ");
-    poema = poema.replace(",", " ");
-    poema = poema.replace(".", " ");
-    poema = poema.replace(";", " ");
+    poema = poema.replaceAll("\\!", " ");
+    poema = poema.replaceAll("\\¡", " ");
+    poema = poema.replaceAll("\\?", " ");
+    poema = poema.replaceAll("\\¿", " ");
+    poema = poema.replaceAll("\\,", " ");
+    poema = poema.replaceAll("\\.", " ");
+    poema = poema.replaceAll("\\;", " ");
     for (int i=0; i < conj1.length; i++) {
       poema = poema.replace(" "+conj1[i]+" ", " ");
     }
