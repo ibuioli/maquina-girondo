@@ -1,13 +1,13 @@
 /***************************
  
- Máquina Girondo beta 1.3.4
+ Máquina Girondo 1.0
  
  Processing versión: 3+
  KeTai versión: 12+
  
  **************************/
 
-import android.net.ConnectivityManager;
+/*import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.content.Context;//Comentar para Java de Escritorio*/
 import ketai.sensors.*;
@@ -35,15 +35,15 @@ boolean s;
 ///////////////////
 
 //App de Celulares
-boolean android = true;
+//boolean android = true;
 //App de Escritorio
-//boolean android = false;
+boolean android = false;
 
 boolean carga;
 
 public void setup() {
-  fullScreen();    //App Celulares
-  //size(320, 480, P2D);  //App de Escritorio
+  //fullScreen();    //App Celulares
+  size(320, 480, P2D);  //App de Escritorio
   orientation(PORTRAIT);
   background(233, 226, 198);
 

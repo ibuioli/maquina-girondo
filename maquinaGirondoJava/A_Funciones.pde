@@ -5,12 +5,12 @@ public void mouseDragged() {
 }
 
 public void mouseReleased() {
-  if (ppos <= -width/1.5) {
+  if (ppos <= -width/3) {
     s = true;
     poema = new Estrofa( byte( floor(random(3, 7.99)) ) );  //Nuevo Poema
     ppos = 0;
     alpha = 250;
-  } else if (ppos > -width/1.5) {
+  } else if (ppos > -width/3) {
     ppos = 0;
     alpha = 250;
   }
@@ -25,11 +25,11 @@ public void onLocationEvent(double _lat, double _lon, double _alt) {
 
 //VERSION ANDROID//
 public boolean isNetworkAvailable() {
-  ConnectivityManager connectivityManager = (ConnectivityManager)getActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+  /*ConnectivityManager connectivityManager = (ConnectivityManager)getActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
   NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
   return activeNetworkInfo != null;//Comentar para Java de Escritorio*/
-  //return false;  //Comentar para Java en Android
+  return false;  //Comentar para Java en Android
 }
 public void requestData() {
   if (carga == false) {

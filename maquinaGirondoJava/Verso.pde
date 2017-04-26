@@ -143,11 +143,11 @@ public class Verso {
     }
 
     if (c == 1 && e == 0) {
-      palabras[0] = resto[(int)random(1, resto.length)];
+      palabras[0] = resto[(int)random(1, resto.length)]+",";
     } else if (c == 1 && e == 1) {
       palabras[0] = inf[(int)random(1, inf.length)]+"se";
     } else if (c == 1 && e == 2) {
-      if ((int)random(0, 100) < 70) {
+      if ((int)random(0, 100) < 60) {
         comilla = true;
       } else {
         comilla = false;
@@ -175,9 +175,17 @@ public class Verso {
         if (exc == false && random(0, 100) <= 10) { //Preguntar o No
           pre = true;
         }
+      }else{
+        verso = "\""+letraCapital(verso)+"\"";
       }
     }
-
+    
+    if (exc) {
+      verso = "¡"+letraCapital(verso)+"!";
+    } else if (pre) {
+      verso = "¿"+letraCapital(verso)+"?";
+    }
+    
     //Correcciones de Texto
     if (verso.equals("") == false) {
       verso = verso.replaceAll(" a el ", " al ");
@@ -186,11 +194,8 @@ public class Verso {
       verso = verso.replaceAll("violeto", "violeta");
       verso = verso.replaceAll("violetos", "violetas");
       verso = verso.replaceAll("la agua", "el agua");
-    }
-    if (exc) {
-      verso = "¡"+letraCapital(verso)+"!";
-    } else if (pre) {
-      verso = "¿"+letraCapital(verso)+"?";
+      verso = verso.replaceAll(",\\!", "!");
+      verso = verso.replaceAll(",\\?", "?");
     }
   }
 

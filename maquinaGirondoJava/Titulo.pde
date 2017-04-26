@@ -6,7 +6,6 @@ public class Titulo {
     String poema = poema_;
 
     poema = poema.replaceAll("\n", " ");
-    poema = depurarPalabras(poema);
     poema = poema.replaceAll("\\!", " ");
     poema = poema.replaceAll("\\¡", " ");
     poema = poema.replaceAll("\\?", " ");
@@ -14,19 +13,25 @@ public class Titulo {
     poema = poema.replaceAll("\\,", " ");
     poema = poema.replaceAll("\\.", " ");
     poema = poema.replaceAll("\\;", " ");
+    poema = poema.replaceAll("\"", " ");
+    
     for (int i=0; i < conj1.length; i++) {
-      poema = poema.replace(" "+conj1[i]+" ", " ");
+      poema = poema.replaceAll("\\b"+conj1[i]+"\\b", " ");
     }
     for (int i=0; i < conj2.length; i++) {
-      poema = poema.replace(" "+conj2[i]+" ", " ");
+      poema = poema.replaceAll("\\b"+conj2[i]+"\\b", " ");
     }
     for (int i=0; i < inf.length; i++) {
-      poema = poema.replace(" "+inf+" ", " ");
-      poema = poema.replace(" "+inf+"se ", " ");
+      poema = poema.replaceAll("\\b"+inf[i]+"\\b", " ");
+      poema = poema.replaceAll("\\b"+inf[i]+"se\\b", " ");
     }
     for (int i=0; i < prep.length; i++) {
-      poema = poema.replace(" "+prep[i]+" ", " ");
+      poema = poema.replaceAll("\\b"+prep[i]+"\\b", " ");
     }
+    for (int i=0; i < nums.length; i++) {
+      poema = poema.replaceAll("\\b"+nums[i]+"\\b", " ");
+    }
+    
     poema = depurarPalabras(poema);
     lista = split(poema, ' ');
 
@@ -41,6 +46,8 @@ public class Titulo {
         t = "Croquis en "+lug;
       } else if (r > 30 && r <= 35) {
         t = "Fiesta en "+lug;
+      } else if (r > 35 && r <= 40) {
+        t = "Paisaje de "+lug;
       } else {
         t = lista[ int(random(0, lista.length-1)) ];
       }
