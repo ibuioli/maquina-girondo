@@ -1,7 +1,8 @@
 /*Declaraciones*/
+var lug = "";
 var prep = ["","de","de","de","de","de","de","de","de","de","de","de","de","con","con","con","con","a","a","a","para","para","por","por","sobre","sobre","entre","entre","sin","sin","hasta","bajo","ante","desde","contra","durante","hacia"];
 var nums = ["","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez","sesenta","ochenta","cien","cuatrocientos","mil"];
-var exeFem = ["flores","paredes","ubres","calles","mujeres","mujer","electricidad","reunión","calle","redes","noches","noche","pared","gente","gentes","ciudad","cariátides","parte","mano","manos","erección","prestidigitación","oraciones","llave","densidad","rechonchez","visión","luz","luces","virgen","carne","vírgenes","multitud","llaves","intensión","gobernación","serpiente","narices","desilusión","dramaticidad","constelaciones","crispaciones","divagaciones"];
+var exeFem = ["flores","paredes","ubres","calles","mujeres","mujer","electricidad","reunión","calle","redes","noches","noche","pared","gente","gentes","ciudad","cariátides","parte","mano","manos","erección","prestidigitación","oraciones","llave","densidad","rechonchez","visión","luz","luces","virgen","carne","vírgenes","multitud","llaves","intensión","gobernación","serpiente","narices","desilusión","dramaticidad","constelaciones","crispaciones","divagaciones","piel"];
 var exeMas = ["tranvía","cura","pederastas","paragua","paraguas","callicidas","lema"];
 
 var cuerpo = ["","ancas","bigotes","brazo","cabellera","cabezas","cadera","cara","caras","cintura","costillas","cuello","dedo","dientes","gargantas","jeta","mamas","mano","meñique","narices","palmas","pelo","piel","poros","pubis","pulmones","pupila","quijada","tetas","tripas","lenguas","nalgas","lomo","cutis","espaldas","labios","pechos","pezones","brazos","piernas","pupilas","trasero","ubres","pies","cabeza","cabelleras","manos","sombras","sonrisas","dedos","nalgas","lomo","cutis","espaldas","labios","pechos","pezones","brazos","piernas","pupilas","trasero","ubres","pies","cabeza","cabelleras","manos","sombras","sonrisas","dedos"];
@@ -21,7 +22,7 @@ function Estrofa(c_) {
 
  this.palabras;
  this.estru;
- this.fon; //Fonetica
+ this.fon = ""; //Fonetica
 
  this.enume;
 
@@ -97,6 +98,7 @@ function Estrofa(c_) {
 
  for (i = 0; i < this.c; i++) { //Asignación de Versos
   this.versos[i] = new Verso(this.palabras[i], this.estru[i]);
+  this.fon = this.fon + "\n" + this.versos[i].fonetica();
  }
 
  for (i = 0; i < this.c; i++) { //Asignación de la Estrofa a la variable String

@@ -8,15 +8,20 @@ function preload() {
 function setup() {
  createCanvas(320, 480);
 
- linea = new Verso(byte(floor(random(1, 7.99))), byte(floor(random(0, 2.99))));
+ poema = new Estrofa(byte(floor(random(3, 7.99))));
 }
 
 function draw() {
 
  background(255);
 
- linea.escribir();        //Texto con Formato
- print(linea.fonetica()); //Fonetica para TTS
+ push();
+ textAlign(LEFT, CENTER);
+ textSize(22);
+ textLeading(22);
+ text(poema.texto(), 10, -height/8, width - 10, height);
+ print(poema.fonetica()); //Fonetica para TTS
+ pop();
 
  noLoop();
 }
@@ -24,7 +29,6 @@ function draw() {
 //INTERACCION
 function mousePressed() {
  tema = floor(random(0, 3.99));
- linea = new Verso(byte(floor(random(1, 7.99))), byte(floor(random(0, 2.99))));
- //poema = new Estrofa(byte(floor(random(3, 7.99)))); //Nuevo Poema
+ poema = new Estrofa(byte(floor(random(3, 7.99)))); //Nuevo Poema
  draw();
 }
