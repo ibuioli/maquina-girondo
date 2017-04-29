@@ -12,7 +12,6 @@ var otraPagina = false;
 function preload() {
 
  back = loadImage("data/back.jpg");
- linea = loadImage("data/linea.jpg");
  times = loadFont("data/timesbd.otf");
 
  tema = floor(random(0, 3.99));
@@ -42,7 +41,7 @@ function setup() {
 
  /*lat = locationData.latitude;
  lon = locationData.longitude;
- var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+"%2C"+lon+"&language=es";
+ var url = "http://api.geonames.org/findNearbyPlaceNameJSON?lat="+lat+"&lng="+lon+"&lang=es&style=short&username=ibuioli";
  json = loadJSON(url, tenerDatos);*/
 }
 
@@ -54,7 +53,7 @@ function setup() {
 
 function draw() {
  //Grafica
- background(30);
+ background(233, 226, 198);
  imageMode(CORNER);
  image(back, 0, 0, width/2, height);
 
@@ -64,7 +63,6 @@ function draw() {
   image(back, 0, 0, width/2, height);
   image(back, width/2, 0, width/2, height);
   imageMode(CENTER);
-  image(linea, width/2, height/2, width/10, height);
  }
 
  var can1 = est_1.c + est_2.c + est_3.c;
@@ -77,10 +75,10 @@ function draw() {
  }
 
  if(ani === true){
-  alTi = alTi - 10;
-  al1 = al1 - 10;
-  al2 = al2 - 10;
-  alFir = alFir - 10;
+  alTi = alTi - 15;
+  al1 = al1 - 15;
+  al2 = al2 - 15;
+  alFir = alFir - 15;
 
   if(alFir === -20){
     est_1 = new Estrofa(byte(floor(random(3, 7.99))));
@@ -149,7 +147,6 @@ function draw() {
   fill(10, 8, 0, al2);
   text(est_4.texto() + "\n\n" + est_5.texto(), width-width/2+map(width, 800, 1980, 35, 86), 40, width/2 - map(width, 800, 1980, 40, 90), height);
  }
-
 
  //FIRMA
  textAlign(RIGHT, BOTTOM);

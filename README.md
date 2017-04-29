@@ -32,6 +32,7 @@ Presente en versiones:
 
 * Nexus 1 - Android 4.1.2 (Android Virtual Device)
 * Nexus 4 - Android 4.1.2 (Android Virtual Device)
+* Móvil Genérico - Android 4.2 (Manymo)
 * Samsung Galaxy S6 - Android 5.1.0 (Genymotion)
 * Móvil Genérico - Android 5.0.0 (Genymotion)
 * Tablet Genérica - Android 5.0.0 (Genymotion)

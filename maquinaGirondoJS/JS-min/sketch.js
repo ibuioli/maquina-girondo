@@ -20,8 +20,8 @@ function draw() {
  textSize(22);
  textLeading(22);
  text(poema.texto(), 10, -height/8, width - 10, height);
- print(poema.fonetica()); //Fonetica para TTS
  pop();
+ print(poema.fonetica()); //Fonetica para TTS
 
  noLoop();
 }

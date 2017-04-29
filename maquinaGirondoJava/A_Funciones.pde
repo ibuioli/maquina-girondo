@@ -25,11 +25,11 @@ public void onLocationEvent(double _lat, double _lon, double _alt) {
 
 //VERSION ANDROID//
 public boolean isNetworkAvailable() {
-  /*ConnectivityManager connectivityManager = (ConnectivityManager)getActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+  ConnectivityManager connectivityManager = (ConnectivityManager)getActivity().getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
 
   NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
   return activeNetworkInfo != null;//Comentar para Java de Escritorio*/
-  return false;  //Comentar para Java en Android
+  //return false;  //Comentar para Java en Android
 }
 public void requestData() {
   if (carga == false) {

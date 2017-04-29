@@ -127,10 +127,9 @@ function Estrofa(c_) {
  }
 
  this.escribir = function() {
-  textAlign(LEFT, CENTER);
-  textSize(22);
-  textLeading(22);
-  text(this.t, 10, -height/8, width/2 - 10, height);
+  push();
+  text(this.t, 10, 10, width, height);
+  pop();
  }
 
  this.texto = function() {
