@@ -15,7 +15,7 @@ import ketai.sensors.*;
 /*LOCALIZACION*/
 KetaiLocation sitio;
 JSONObject json, jsonx;
-String lug;
+String lug, slug;
 
 Estrofa poema;
 String[] prep, nums, adj;

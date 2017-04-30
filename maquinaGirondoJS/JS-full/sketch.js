@@ -1,13 +1,15 @@
 var tema; //0: calle, 1: noche, 2: plaza, 3:mar
 var back, linea, times; //Recursos Gráficos
 var locationData, json, lat, lon; //Datos Geográficos
-var lug;
 var alTi = 0;
 var alFir = 0;
 var al1 = 0;
 var al2 = 0;
 var ani = false;
 var otraPagina = false;
+var geo, lat, lon;
+var json, jsonx;
+var noche;
 
 function preload() {
 
@@ -16,11 +18,13 @@ function preload() {
 
  tema = floor(random(0, 3.99));
 
- /*if(geoCheck() === true){
-  locationData =  getCurrentPosition();
- }else{
-  lug = "";
- }*/
+ if (hour() >= 19 || hour() >= 0 && hour() <= 5) {
+    noche = true;
+  } else {
+    noche = false;
+  }
+
+ geo = loadJSON("http://ip-api.com/json", geoCor);
 }
 
 function setup() {
@@ -39,19 +43,12 @@ function setup() {
  textFont(times);
  frameRate(60);
 
- /*lat = locationData.latitude;
- lon = locationData.longitude;
- var url = "http://api.geonames.org/findNearbyPlaceNameJSON?lat="+lat+"&lng="+lon+"&lang=es&style=short&username=ibuioli";
- json = loadJSON(url, tenerDatos);*/
+ json = loadJSON("http://api.geonames.org/findNearbyPlaceNameJSON?lat="+lat+"&lng="+lon+"&lang=es&style=short&username=ibuioli", ubicacion);
+ jsonx = loadJSON("http://api.geonames.org/findNearbyJSON?lat="+lat+"&lng="+lon+"&lang=es&style=short&username=ibuioli", ubiEsp);
 }
 
-/*function tenerDatos(data){
-  lug = data.results[1].address_components[0].short_name;
-
-  draw();
-}*/
-
 function draw() {
+ print(lug, slug, tema);
  //Grafica
  background(233, 226, 198);
  imageMode(CORNER);
@@ -185,7 +182,6 @@ function draw() {
 function mousePressed() {
  if(otraPagina){
   ani = true;
-  tema = floor(random(0, 3.99));
  }
 }
 function keyPressed() {
@@ -196,4 +192,44 @@ function keyPressed() {
 }
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+}
+
+//CARGA DE DATOS
+function geoCor(data){
+  lat = data.lat;
+  lon = data.lon;
+}
+function ubicacion(data){
+  if(data.geonames[0].length !== 0){
+    lug = data.geonames[0].name;
+  }else{
+    lug = "";
+  }
+}
+function ubiEsp(data){
+  if(data.geonames[0].length !== 0){
+    slug = data.geonames[0].name;
+    if (data.geonames[0].fcl === "H" || data.geonames[0].fcl === "T" || data.geonames[0].fcl === "U") {
+      if (noche) {
+        tema = 1;
+      } else {
+        tema = 3;
+      }
+    } else if (data.geonames[0].fcl === "L" || data.geonames[0].fcl === "V") {
+      if (noche) {
+        tema = 1;
+      } else {
+        tema = 2;
+      }
+    } else {
+      if (noche) {
+        tema = 1;
+      } else {
+        tema = 0;
+      }
+    }
+  }else{
+    slug = "";
+    tema = floor(random(0, 3.99));
+  }
 }

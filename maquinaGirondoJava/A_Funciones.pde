@@ -39,6 +39,7 @@ public void requestData() {
       }
       if (sitio.getProvider().equals("none")) {
         lug = "";
+        slug = "";
         tema = floor(random(0, 3.99));
       } else {
         if (isNetworkAvailable()) {
@@ -46,6 +47,7 @@ public void requestData() {
           jsonx = loadJSONObject("http://api.geonames.org/findNearbyJSON?lat="+lat+"&lng="+lon+"&lang=es&style=short&username=ibuioli");
         } else {
           lug = "";
+          slug = "";
         }
         if (sitio.getProvider().equals("gps")) {
           if (isNetworkAvailable()) {
@@ -53,9 +55,16 @@ public void requestData() {
               lug = json.getJSONArray("geonames").getJSONObject(0).getString("name");
             } else {
               lug = "";
+              slug = "";
+            }
+            if (jsonx.getJSONArray("geonames").size() != 0) {
+              slug = jsonx.getJSONArray("geonames").getJSONObject(0).getString("name");
+            } else {
+              slug = "";
             }
           } else {
             lug = "";
+            slug = "";
           }
         } else {
           if (isNetworkAvailable()) {
@@ -64,8 +73,14 @@ public void requestData() {
             } else {
               lug = "";
             }
+            if (jsonx.getJSONArray("geonames").size() != 0) {
+              slug = jsonx.getJSONArray("geonames").getJSONObject(0).getString("name");
+            } else {
+              slug = "";
+            }
           } else {
             lug = "";
+            slug = "";
           }
         }
         /*SELECCION TEMA*/
@@ -102,6 +117,7 @@ public void requestData() {
       }
     } else {
       lug = "";
+      slug = "";
       tema = floor(random(0, 3.99));   //Definir Tema
     }
     lug = depCiudad(lug);

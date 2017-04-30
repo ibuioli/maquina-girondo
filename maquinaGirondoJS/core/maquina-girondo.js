@@ -1,5 +1,6 @@
 /*Declaraciones*/
 var lug = "";
+var slug = "";
 var prep = ["","de","de","de","de","de","de","de","de","de","de","de","de","con","con","con","con","a","a","a","para","para","por","por","sobre","sobre","entre","entre","sin","sin","hasta","bajo","ante","desde","contra","durante","hacia"];
 var nums = ["","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez","sesenta","ochenta","cien","cuatrocientos","mil"];
 var exeFem = ["flores","paredes","ubres","calles","mujeres","mujer","electricidad","reunión","calle","redes","noches","noche","pared","gente","gentes","ciudad","cariátides","parte","mano","manos","erección","prestidigitación","oraciones","llave","densidad","rechonchez","visión","luz","luces","virgen","carne","vírgenes","multitud","llaves","intensión","gobernación","serpiente","narices","desilusión","dramaticidad","constelaciones","crispaciones","divagaciones","piel"];
@@ -19,6 +20,7 @@ var inf = ["","abrazar","abrir","acariciar","afeitar","apoyar","aprender","almib
 function Estrofa(c_) {
  this.t;
  this.c = c_;
+ this.e = 3.99;
 
  this.palabras;
  this.estru;
@@ -36,7 +38,7 @@ function Estrofa(c_) {
  for (var i = 0; i < this.c; i++) {
   if (i === 0) {
    this.palabras[i] = byte(floor(random(1, 7.99)));
-   this.estru[i] = byte(floor(random(0, 2.99)));
+   this.estru[i] = byte(floor(random(0, this.e)));
   } else {
    if (this.palabras[i - 1] == byte(7) && this.estru[i - 1] == byte(1)) { //SIETE PALABRAS
     this.palabras[i] = 7;
@@ -82,16 +84,16 @@ function Estrofa(c_) {
     this.estru[i] = 1;
    } else if (this.palabras[i - 1] == byte(1) && this.estru[i - 1] == byte(0)) { //UNA PALABRA
     if (this.enume < 2) {
-     this.palabras[i] = byte(1);
-     this.estru[i] = byte(0);
+     this.palabras[i] = 1;
+     this.estru[i] = 0;
     } else {
      this.palabras[i] = byte(floor(random(1, 7.99)));
-     this.estru[i] = byte(floor(random(0, 2.99)));
+     this.estru[i] = byte(floor(random(0, this.e)));
     }
     this.enume++;
    } else {
     this.palabras[i] = byte(floor(random(1, 7.99)));
-    this.estru[i] = byte(floor(random(0, 2.99)));
+    this.estru[i] = byte(floor(random(0, this.e)));
    }
   }
  }
@@ -122,8 +124,11 @@ function Estrofa(c_) {
     this.t = "" + this.t + this.versos[i].texto() + "\n";
    }
   }
-  //Correciones Finales
+
+  //AJUSTES FINALES - POSTERIORES A LA PUNTUACIÓN
   this.t = this.t.replace(/\,\./g, ".");
+  this.t = this.t.replace(/\bnecesario\./g, "necesario...");
+  this.t = this.t.replace(/\bobligatorio\./g, "obligatorio...");
  }
 
  this.escribir = function() {
@@ -185,6 +190,14 @@ function Verso(c_, r_) {
   this.palabras[4] = "en";
   this.palabras[5] = conArt(temaLugar());
   this.palabras[6] = adjGenero(this.palabras[5]);
+ } else if (this.c == 7 && this.r == 3) {
+  this.palabras[0] = "de";
+  this.palabras[1] = cuerpo[int(random(1, cuerpo.length))];
+  this.palabras[2] = "de";
+  this.palabras[3] = resto[int(random(1, resto.length))]+",";
+  this.palabras[4] = "y";
+  this.palabras[5] = conArt(resto[int(random(1, resto.length))]);
+  this.palabras[6] = adjGenero(this.palabras[5]);
  }
 
  if (this.c == 6 && this.r === 0) {
@@ -212,6 +225,17 @@ function Verso(c_, r_) {
   }
   this.palabras[4] = esPlural(0);
   this.palabras[5] = adjGenero(this.palabras[4]);
+ } else if (this.c == 6 && this.r == 3) {
+  this.palabras[0] = "cuando";
+  this.palabras[1] = conArt(esSingular(4));
+  this.palabras[2] = conVerb(this.palabras[1]);
+  this.palabras[3] = conArt(temaLugar())+",";
+  this.palabras[4] = "es";
+  if(random(0, 100) < 50){
+    this.palabras[5] = "necesario";
+  }else{
+    this.palabras[5] = "obligatorio";
+  }
  }
 
  if (this.c == 5 && this.r === 0) {
@@ -232,6 +256,12 @@ function Verso(c_, r_) {
   this.palabras[2] = conj1[int(random(1, conj1.length))];
   this.palabras[3] = "por";
   this.palabras[4] = conArt(temaLugar());
+ } else if (this.c == 5 && this.r == 3) {
+  this.palabras[0] = "en";
+  this.palabras[1] = conArt(resto[int(random(1, resto.length))]);
+  this.palabras[2] = "que";
+  this.palabras[3] = conj1[int(random(1, conj1.length))];
+  this.palabras[4] = conArt(temaLugar());
  }
 
  if (this.c == 4 && this.r === 0) {
@@ -250,6 +280,11 @@ function Verso(c_, r_) {
   this.palabras[1] = adjGenero(this.palabras[0]) + ".";
   this.palabras[2] = letraCapital(lugar[int(random(1, lugar.length))]);
   this.palabras[3] = adjGenero(this.palabras[2]);
+ } else if (this.c == 4 && this.r == 3) {
+  this.palabras[0] = conArt(esPlural(2));
+  this.palabras[1] = conj1[int(random(1, conj1.length))];
+  this.palabras[2] = "con";
+  this.palabras[3] = conArt(temaLugar());
  }
 
  if (this.c == 3 && this.r === 0) {
@@ -272,6 +307,10 @@ function Verso(c_, r_) {
   this.palabras[0] = "no";
   this.palabras[1] = conj1[int(random(1, conj1.length))];
   this.palabras[2] = conArt(esPlural(0));
+ } else if (this.c == 3 && this.r == 3) {
+  this.palabras[0] = conArt(temaLugar());
+  this.palabras[1] = adjGenero(this.palabras[0])+",";
+  this.palabras[2] = adjGenero(this.palabras[0])+",";
  }
 
  if (this.c == 2 && this.r === 0) {
@@ -283,6 +322,9 @@ function Verso(c_, r_) {
  } else if (this.c == 2 && this.r == 2) {
   this.palabras[0] = nums[int(random(1, nums.length))];
   this.palabras[1] = esPlural(int(random(0, 4)));
+ } else if (this.c == 2 && this.r == 3) {
+  this.palabras[0] = "no";
+  this.palabras[1] = conj1[int(random(1, conj1.length))];
  }
 
  if (this.c == 1 && this.r === 0) {
@@ -290,12 +332,15 @@ function Verso(c_, r_) {
  } else if (this.c == 1 && this.r == 1) {
   this.palabras[0] = inf[int(random(1, inf.length))] + "se";
  } else if (this.c == 1 && this.r == 2) {
-  if (int(random(0, 100)) < 60) {
+  if (int(random(0, 100)) < 40) {
    this.comilla = true;
   } else {
    this.comilla = false;
   }
   this.palabras[0] = prenda[int(random(1, prenda.length))];
+ } else if (this.c == 1 && this.r == 3) {
+    //TO DO Ubicacion
+    this.palabras[0] = prenda[int(random(1, prenda.length))];
  }
 
  /////////////////////////////////////////////////////////////
@@ -333,30 +378,32 @@ function Verso(c_, r_) {
 
  //Correcciones de Texto
  if (this.verso !== "") {
-  this.verso = this.verso.replace(" a el ", " al ");
-  this.verso = this.verso.replace(" de el ", " del ");
   //Corrección de errores excepcionales
-  this.verso = this.verso.replace("violeto", "violeta");
-  this.verso = this.verso.replace("violetos", "violetas");
-  this.verso = this.verso.replace("la agua", "el agua");
-  this.verso = this.verso.replace(",!", "!");
-  this.verso = this.verso.replace(",?", "?");
+  this.verso = this.verso.replace(/\bvioleto\b/g, "violeta");
+  this.verso = this.verso.replace(/\bvioletos\b/g, "violetas");
+  this.verso = this.verso.replace(/\bla agua\b/g, "el agua");
+  this.verso = this.verso.replace(/\bla alga\b/g, "el alga");
+  this.verso = this.verso.replace(/\,\!/, "!");
+  this.verso = this.verso.replace(/\,\?/, "?");
+  //Configuraciones generales
+  this.verso = this.verso.replace(/\ba el\b/g, "al");
+  this.verso = this.verso.replace(/\bde el\b/g, "del");
  }
 
  this.fon = this.verso;
- this.fon = this.fon.replace(" la ", " la, ");
- this.fon = this.fon.replace(" el ", " el, ");
- this.fon = this.fon.replace(" los ", " los, ");
- this.fon = this.fon.replace(" las ", " las, ");
- this.fon = this.fon.replace(" de ", " de, ");
- this.fon = this.fon.replace(" o ", " o, ");
- this.fon = this.fon.replace(" y ", " y, ");
- this.fon = this.fon.replace(" se ", " se, ");
- this.fon = this.fon.replace(" en ", " en, ");
- this.fon = this.fon.replace(" le ", " le, ");
- this.fon = this.fon.replace(" les ", " les, ");
- this.fon = this.fon.replace(" a ", " a, ");
- this.fon = this.fon.replace(" sin ", " sin, ");
+ this.fon = this.fon.replace(/\bla\b/g, "la,");
+ this.fon = this.fon.replace(/\bel\b/g, "el,");
+ this.fon = this.fon.replace(/\blos\b/g, "los,");
+ this.fon = this.fon.replace(/\blas\b/g, "las,");
+ this.fon = this.fon.replace(/\bde\b/g, "de,");
+ this.fon = this.fon.replace(/\bo\b/g, "o,");
+ this.fon = this.fon.replace(/\by\b/g, "y,");
+ this.fon = this.fon.replace(/\bse\b/g, "se,");
+ this.fon = this.fon.replace(/\ben\b/g, "en,");
+ this.fon = this.fon.replace(/\ble\b/g, "le,");
+ this.fon = this.fon.replace(/\bles\b/g, "les,");
+ this.fon = this.fon.replace(/\ba\b/g, "a,");
+ this.fon = this.fon.replace(/\bsin\b/g, "sin,");
 
  this.escribir = function() {
   push();
@@ -442,6 +489,10 @@ function Titulo(s_) {
 //TEMA
 function temaLugar() {
  var nlugar = "";
+
+ if(tema === undefined){
+  tema = floor(random(0, 3.99));
+ }
 
  if (tema === 0) { //calle
   nlugar = lugar[int(random(1, 20))];
@@ -743,9 +794,11 @@ function depurarPalabras(p_){
   p = p.replace(/\bsu\b/g, " ");
   p = p.replace(/\bsus\b/g, " ");
   p = p.replace(/\bestán\b/g, " ");
+  p = p.replace(/\bes\b/g, " ");
   p = p.replace(/\bsi\b/g, " ");
   p = p.replace(/\bse\b/g, " ");
   p = p.replace(/\bno\b/g, " ");
+  p = p.replace(/\bque\b/g, " ");
   p = p.trim().replace(/ +/g, " ")
   
   return p;

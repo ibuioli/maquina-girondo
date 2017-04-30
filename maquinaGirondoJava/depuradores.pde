@@ -16,9 +16,11 @@ public String depurarPalabras(String p) {
   p = p.replaceAll("\\bsu\\b", " ");
   p = p.replaceAll("\\bsus\\b", " ");
   p = p.replaceAll("\\bestán\\b", " ");
+  p = p.replaceAll("\\bes\\b", " ");
   p = p.replaceAll("\\bsi\\b", " ");
   p = p.replaceAll("\\bse\\b", " ");
   p = p.replaceAll("\\bno\\b", " ");
+  p = p.replaceAll("\\bque\\b", " ");
   p = p.trim().replaceAll(" +", " ");
   
   return p;

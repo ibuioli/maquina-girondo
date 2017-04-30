@@ -12,6 +12,7 @@ public class Estrofa {
 
   Estrofa(byte c_) {
     c = c_;  //Cantidad de Palabras
+    float e = 3.99; //Nivel de estructuras
 
     t = "";  //Evita el valor null inicial
     enume = 0; //Resetea la variable de enumeración
@@ -24,7 +25,7 @@ public class Estrofa {
       if (i == 0) {
         /*PRIMER VERSO ALEATORIO*/
         palabras[i] = byte( floor(random(1, 7.99)) );
-        estru[i] = byte( floor(random(0, 2.99)) );
+        estru[i] = byte( floor(random(0, e)) );
       } else {
         /*ESTRUCTURAS BASADAS EN VERSO ANTERIOR*/
         if (palabras[i-1] == byte(7) && estru[i-1] == byte(1)) {  //SIETE PALABRAS
@@ -75,12 +76,12 @@ public class Estrofa {
             estru[i] = byte(0);
           } else {
             palabras[i] = byte( floor(random(1, 7.99)) );
-            estru[i] = byte( floor(random(0, 2.99)) );
+            estru[i] = byte( floor(random(0, e)) );
           }
           enume++;
         } else {
           palabras[i] = byte( floor(random(1, 7.99)) );
-          estru[i] = byte( floor(random(0, 2.99)) );
+          estru[i] = byte( floor(random(0, e)) );
         }
       }
     }
@@ -112,6 +113,11 @@ public class Estrofa {
         }
       }
     }
+    
+    //AJUSTES FINALES - POSTERIORES A LA PUNTUACIÓN
+    t = t.replaceAll(",\\.", ".");
+    t = t.replaceAll("necesario\\.", "necesario...");
+    t = t.replaceAll("obligatorio\\.", "obligatorio...");
 
     //GENERACIÓN DE FIRMA//
     if (lug.equals("")) {
