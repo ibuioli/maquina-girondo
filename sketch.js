@@ -1,17 +1,17 @@
 var tema; //0: calle, 1: noche, 2: plaza, 3:mar
 var back, linea, times; //Recursos Gráficos
-var locationData, json, lat, lon; //Datos Geográficos
+var locationData, lat, lon; //Datos Geográficos
 var alTi = 0;
 var alFir = 0;
 var al1 = 0;
 var al2 = 0;
 var ani = false;
 var otraPagina = false;
-var geo, lat, lon;
 var json, jsonx;
 var noche;
 
 function preload() {
+ locationData =  getCurrentPosition();
 
  back = loadImage("data/back.jpg");
  times = loadFont("data/timesbd.otf");
@@ -24,11 +24,13 @@ function preload() {
     noche = false;
   }
 
- geo = loadJSON("http://ip-api.com/json", geoCor);
 }
 
 function setup() {
  createCanvas(windowWidth, windowHeight);
+
+ lat = locationData.latitude;
+ lon = locationData.longitude;
 
  est_1 = new Estrofa(byte(floor(random(3, 7.99))));
  est_2 = new Estrofa(byte(floor(random(3, 6.99))));
@@ -195,10 +197,6 @@ function windowResized() {
 }
 
 //CARGA DE DATOS
-function geoCor(data){
-  lat = data.lat;
-  lon = data.lon;
-}
 function ubicacion(data){
   if(data.geonames[0].length !== 0){
     lug = data.geonames[0].name;

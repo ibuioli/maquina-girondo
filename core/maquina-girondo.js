@@ -339,8 +339,12 @@ function Verso(c_, r_) {
   }
   this.palabras[0] = prenda[int(random(1, prenda.length))];
  } else if (this.c == 1 && this.r == 3) {
-    //TO DO Ubicacion
-    this.palabras[0] = prenda[int(random(1, prenda.length))];
+    if(slug !== ""){
+      this.comilla = true;
+      this.palabras[0] = slug;
+    }else{
+      this.palabras[0] = prenda[int(random(1, prenda.length))];
+    }
  }
 
  /////////////////////////////////////////////////////////////
