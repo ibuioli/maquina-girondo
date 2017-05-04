@@ -1,17 +1,17 @@
 var tema; //0: calle, 1: noche, 2: plaza, 3:mar
 var back, linea, times; //Recursos Gráficos
-var locationData, json, lat, lon; //Datos Geográficos
+var locationData, lat, lon; //Datos Geográficos
 var alTi = 0;
 var alFir = 0;
 var al1 = 0;
 var al2 = 0;
 var ani = false;
 var otraPagina = false;
-var geo, lat, lon;
-var json, jsonx;
+var json;
 var noche;
 
 function preload() {
+ locationData =  getCurrentPosition();
 
  back = loadImage("data/back.jpg");
  times = loadFont("data/timesbd.otf");
@@ -24,11 +24,13 @@ function preload() {
     noche = false;
   }
 
- geo = loadJSON("http://ip-api.com/json", geoCor);
 }
 
 function setup() {
  createCanvas(windowWidth, windowHeight);
+
+ lat = locationData.latitude;
+ lon = locationData.longitude;
 
  est_1 = new Estrofa(byte(floor(random(3, 7.99))));
  est_2 = new Estrofa(byte(floor(random(3, 6.99))));
@@ -43,12 +45,10 @@ function setup() {
  textFont(times);
  frameRate(60);
 
- json = loadJSON("http://api.geonames.org/findNearbyPlaceNameJSON?lat="+lat+"&lng="+lon+"&lang=es&style=short&username=ibuioli", ubicacion);
- jsonx = loadJSON("http://api.geonames.org/findNearbyJSON?lat="+lat+"&lng="+lon+"&lang=es&style=short&username=ibuioli", ubiEsp);
+ json = loadJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+"%2C"+lon+"&language=es", ubicacion);
 }
 
 function draw() {
- print(lug, slug, tema);
  //Grafica
  background(233, 226, 198);
  imageMode(CORNER);
@@ -195,41 +195,19 @@ function windowResized() {
 }
 
 //CARGA DE DATOS
-function geoCor(data){
-  lat = data.lat;
-  lon = data.lon;
-}
 function ubicacion(data){
-  if(data.geonames[0].length !== 0){
-    lug = data.geonames[0].name;
-  }else{
-    lug = "";
-  }
-}
-function ubiEsp(data){
-  if(data.geonames[0].length !== 0){
-    slug = data.geonames[0].name;
-    if (data.geonames[0].fcl === "H" || data.geonames[0].fcl === "T" || data.geonames[0].fcl === "U") {
-      if (noche) {
-        tema = 1;
-      } else {
-        tema = 3;
-      }
-    } else if (data.geonames[0].fcl === "L" || data.geonames[0].fcl === "V") {
-      if (noche) {
-        tema = 1;
-      } else {
-        tema = 2;
-      }
-    } else {
-      if (noche) {
-        tema = 1;
-      } else {
-        tema = 0;
+  if(data.results.length !== 0){
+    for (var i = 0; i < data.results[0].address_components.length; i++) {
+      if(data.results[0].address_components[i].types.length > 1){
+        if(data.results[0].address_components[i].types[1] === "political"){
+          lug = data.results[0].address_components[i].short_name;
+          slug = data.results[0].address_components[i].short_name;
+          break;
+        }
       }
     }
   }else{
     slug = "";
-    tema = floor(random(0, 3.99));
+    lug = "";
   }
 }
