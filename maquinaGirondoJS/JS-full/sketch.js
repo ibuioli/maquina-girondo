@@ -13,8 +13,8 @@ var noche;
 function preload() {
  locationData =  getCurrentPosition();
 
- back = loadImage("data/back.jpg");
- times = loadFont("data/timesbd.otf");
+ back = loadImage("https://ibuioli.com.ar/maquina-girondo/data/back.jpg");
+ times = loadFont("https://ibuioli.com.ar/maquina-girondo/data/timesbd.otf");
 
  tema = floor(random(0, 3.99));
 
@@ -96,12 +96,12 @@ function draw() {
   if(alTi > 100){
     if(al1 < 250){
       al1 = al1 + 10;
-    } 
+    }
   }
   if(al1 > 100){
     if(al2 < 250){
       al2 = al2 + 10;
-    } 
+    }
   }
   if(al2 > 100){
     if(alFir < 250){
@@ -158,7 +158,7 @@ function draw() {
 
  //RESTO
  if(alFir >= 250){
-   if(mouseX >= width-50 && mouseX <= (width-50)+50 && 
+   if(mouseX >= width-50 && mouseX <= (width-50)+50 &&
     mouseY >= height-50 && mouseY <= (height-50)+50){
     otraPagina = true;
    }else{
@@ -199,11 +199,9 @@ function ubicacion(data){
   if(data.results.length !== 0){
     for (var i = 0; i < data.results[0].address_components.length; i++) {
       if(data.results[0].address_components[i].types.length > 1){
-        if(data.results[0].address_components[i].types[1] === "political"){
-          lug = data.results[0].address_components[i].short_name;
-          slug = data.results[0].address_components[i].short_name;
-          break;
-        }
+        lug = data.results[0].address_components[i].short_name;
+        slug = data.results[0].address_components[i].long_name;
+        break;
       }
     }
   }else{
