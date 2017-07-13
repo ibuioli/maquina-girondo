@@ -1,6 +1,5 @@
 var tema; //0: calle, 1: noche, 2: plaza, 3:mar
 var back, linea, times; //Recursos Gráficos
-var locationData, lat, lon; //Datos Geográficos
 var alTi = 0;
 var alFir = 0;
 var al1 = 0;
@@ -11,14 +10,21 @@ var json;
 var noche;
 
 function preload() {
- locationData =  getCurrentPosition();
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      json = loadJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+"%2C"+position.coords.longitude+"&language=es", ubicacion);
+      setup();
+    });
+  } else {
+    
+  }
 
- back = loadImage("https://ibuioli.com.ar/maquina-girondo/data/back.jpg");
- times = loadFont("https://ibuioli.com.ar/maquina-girondo/data/timesbd.otf");
+  back = loadImage("https://ibuioli.com.ar/maquina-girondo/data/back.jpg");
+  times = loadFont("https://ibuioli.com.ar/maquina-girondo/data/timesbd.otf");
 
- tema = floor(random(0, 3.99));
+  tema = floor(random(0, 3.99));
 
- if (hour() >= 19 || hour() >= 0 && hour() <= 5) {
+  if (hour() >= 19 || hour() >= 0 && hour() <= 5) {
     noche = true;
   } else {
     noche = false;
@@ -27,25 +33,20 @@ function preload() {
 }
 
 function setup() {
- createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight);
 
- lat = locationData.latitude;
- lon = locationData.longitude;
+  est_1 = new Estrofa(byte(floor(random(3, 7.99))));
+  est_2 = new Estrofa(byte(floor(random(3, 6.99))));
+  est_3 = new Estrofa(byte(floor(random(2, 5.99))));
+  est_4 = new Estrofa(byte(floor(random(5, 7.99))));
+  est_5 = new Estrofa(byte(floor(random(4, 7.99))));
 
- est_1 = new Estrofa(byte(floor(random(3, 7.99))));
- est_2 = new Estrofa(byte(floor(random(3, 6.99))));
- est_3 = new Estrofa(byte(floor(random(2, 5.99))));
- est_4 = new Estrofa(byte(floor(random(5, 7.99))));
- est_5 = new Estrofa(byte(floor(random(4, 7.99))));
+  ti = new Titulo(est_1.texto() + " " + est_2.texto() + " " + est_3.texto() + " " + est_4.texto() + " " + est_5.texto());
 
- ti = new Titulo(est_1.texto() + " " + est_2.texto() + " " + est_3.texto() + " " + est_4.texto() + " " + est_5.texto());
-
- ////GRAFICA GRAL////
- noStroke();
- textFont(times);
- frameRate(60);
-
- json = loadJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+"%2C"+lon+"&language=es", ubicacion);
+  ////GRAFICA GRAL////
+  noStroke();
+  textFont(times);
+  frameRate(60);
 }
 
 function draw() {
