@@ -1,6 +1,6 @@
 /*Declaraciones*/
 var lug = "";
-var slug = "";
+var slug = [];
 var prep = ["","de","de","de","de","de","de","de","de","de","de","de","de","con","con","con","con","a","a","a","para","para","por","por","sobre","sobre","entre","entre","sin","sin","hasta","bajo","ante","desde","contra","durante","hacia"];
 var nums = ["","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez","sesenta","ochenta","cien","cuatrocientos","mil"];
 var exeFem = ["flores","paredes","ubres","calles","mujeres","mujer","electricidad","reunión","calle","redes","noches","noche","pared","gente","gentes","ciudad","cariátides","parte","mano","manos","erección","prestidigitación","oraciones","llave","densidad","rechonchez","visión","luz","luces","virgen","carne","vírgenes","multitud","llaves","intensión","gobernación","serpiente","narices","desilusión","dramaticidad","constelaciones","crispaciones","divagaciones","piel"];
@@ -339,9 +339,9 @@ function Verso(c_, r_) {
   }
   this.palabras[0] = prenda[int(random(1, prenda.length))];
  } else if (this.c == 1 && this.r == 3) {
-    if(slug !== ""){
+    if(slug.length > 0){
       this.comilla = true;
-      this.palabras[0] = slug;
+      this.palabras[0] = slug[int(random(1, slug.length))];
     }else{
       this.palabras[0] = prenda[int(random(1, prenda.length))];
     }
