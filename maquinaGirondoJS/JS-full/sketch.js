@@ -12,7 +12,18 @@ function preload() {
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(function(position) {
       loadJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+"%2C"+position.coords.longitude+"&language=es", ubicacion);
-      loadJSON("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+position.coords.latitude+","+position.coords.longitude+"&language=es&radius=200&key=AIzaSyCXodxfGv7qhVkx4-KJcAbFisjm020GvQI", sitios);
+
+      var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+          targetUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+position.coords.latitude+","+position.coords.longitude+"&language=es&radius=200&key=AIzaSyCXodxfGv7qhVkx4-KJcAbFisjm020GvQI";
+      fetch(proxyUrl + targetUrl)
+        .then(blob => blob.json())
+        .then(data => {
+          sitios(data);
+        })
+        .catch(e => {
+          console.log(e);
+        });
+
       setup();
     });
   } else {
