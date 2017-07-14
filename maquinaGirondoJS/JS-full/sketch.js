@@ -6,13 +6,13 @@ var al1 = 0;
 var al2 = 0;
 var ani = false;
 var otraPagina = false;
-var json;
 var noche;
 
 function preload() {
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      json = loadJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+"%2C"+position.coords.longitude+"&language=es", ubicacion);
+      loadJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+"%2C"+position.coords.longitude+"&language=es", ubicacion);
+      loadJSON("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+position.coords.latitude+","+position.coords.longitude+"&language=es&radius=200&key=AIzaSyCXodxfGv7qhVkx4-KJcAbFisjm020GvQI", sitios);
       setup();
     });
   } else {
@@ -201,12 +201,19 @@ function ubicacion(data){
     for (var i = 0; i < data.results[0].address_components.length; i++) {
       if(data.results[0].address_components[i].types.length > 1){
         lug = data.results[0].address_components[i].short_name;
-        slug = data.results[0].address_components[i].long_name;
         break;
       }
     }
   }else{
-    slug = "";
     lug = "";
+  }
+}
+function sitios(data){
+  if(data.status == "OK"){
+    for(var i = 1; i < data.results.length; i++){
+      slug[i-1] = data.results[i].name;
+    }
+  }else{
+    slug = [];
   }
 }
