@@ -1,4 +1,3 @@
-var tema; //0: calle, 1: noche, 2: plaza, 3:mar
 var back, linea, times; //Recursos Gráficos
 var alTi = 0;
 var alFir = 0;
@@ -12,35 +11,31 @@ function preload() {
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(function(position) {
       loadJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng="+position.coords.latitude+"%2C"+position.coords.longitude+"&language=es", ubicacion);
+      loadJSON("http://api.geonames.org/findNearbyJSON?lat="+position.coords.latitude+"&lng="+position.coords.longitude+"&lang=es&style=short&username=ibuioli", tipoTerreno);
 
       var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-          targetUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+position.coords.latitude+","+position.coords.longitude+"&language=es&radius=200&key=AIzaSyCXodxfGv7qhVkx4-KJcAbFisjm020GvQI";
+          targetUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+position.coords.latitude+","+position.coords.longitude+"&language=es&rankby=distance&types=establishment&key=AIzaSyCXodxfGv7qhVkx4-KJcAbFisjm020GvQI";
       fetch(proxyUrl + targetUrl)
         .then(blob => blob.json())
         .then(data => {
           sitios(data);
         })
         .catch(e => {
-          console.log(e);
+          alert(e);
         });
-
-      setup();
     });
-  } else {
-    
-  }
+  } else {}
 
   back = loadImage("https://ibuioli.com.ar/maquina-girondo/data/back.jpg");
   times = loadFont("https://ibuioli.com.ar/maquina-girondo/data/timesbd.otf");
 
-  tema = floor(random(0, 3.99));
-
   if (hour() >= 19 || hour() >= 0 && hour() <= 5) {
     noche = true;
+    tema = 1;
   } else {
     noche = false;
+    tema = floor(random(0, 3.99));
   }
-
 }
 
 function setup() {
@@ -130,9 +125,9 @@ function draw() {
  if(width < height){
    textSize(map(width, 800, 1980, 32, 48));
    textLeading(map(width, 800, 1980, 32, 48));
-   text(ti.texto().toUpperCase(), 0, map(can1, 10, 18, 90, 30), width, 60);
-   text(ti.texto().toUpperCase(), 1, map(can1, 10, 18, 90, 30), width, 60);
-   text(ti.texto().toUpperCase(), -1, map(can1, 10, 18, 90, 30), width, 60);
+   text(ti.texto().toUpperCase(), 0, map(can1, 10, 18, 40, 30), width, 60);
+   text(ti.texto().toUpperCase(), 1, map(can1, 10, 18, 40, 30), width, 60);
+   text(ti.texto().toUpperCase(), -1, map(can1, 10, 18, 40, 30), width, 60);
  }else{
   text(ti.texto().toUpperCase(), 0, map(can1, 10, 18, 90, 30), width/2, 60);
   text(ti.texto().toUpperCase(), 1, map(can1, 10, 18, 90, 30), width/2, 60);
@@ -148,7 +143,7 @@ function draw() {
  if(width < height){
   textSize(map(width, 800, 1980, 24, 38));
   textLeading(map(width, 800, 1980, 24, 38));
-  text(est_1.texto() + "\n\n" + est_2.texto() + "\n\n" + est_3.texto(), map(width, 800, 1980, 35, 86), map(can1, 10, 18, 150, 70)
+  text(est_1.texto() + est_2.texto() + est_3.texto(), map(width, 800, 1980, 35, 86), map(can1, 10, 18, 110, 70)
   + map(height, 600, 768, 20, 70), width - map(width, 800, 1980, 50, 90), height);
  }else{
   text(est_1.texto() + "\n\n" + est_2.texto() + "\n\n" + est_3.texto(), map(width, 800, 1980, 35, 86), map(can1, 10, 18, 200, 90)
@@ -163,7 +158,7 @@ function draw() {
  fill(10, 8, 0, alFir);
  if(width < height){
   textSize(map(width, 800, 1980, 16, 22));
-  text(firma.toUpperCase(), width-40, height - 40);
+  text(firma.toUpperCase(), width-40, height - 20);
  }else{
   text(firma.toUpperCase(), width-40, height - map(can2, 9, 14, 280, 150) - map(height, 600, 1080, 1, 70) );
  }
@@ -219,12 +214,37 @@ function ubicacion(data){
     lug = "";
   }
 }
+function tipoTerreno(data){
+  if(data.geonames.length !== 0){
+    if (data.geonames[0].fcl === "H" || data.geonames[0].fcl === "T" || data.geonames[0].fcl === "U") {
+      if (noche) {
+        tema = 1;
+      } else {
+        tema = 3;
+      }
+    } else if (data.geonames[0].fcl === "L" || data.geonames[0].fcl === "V") {
+      if (noche) {
+        tema = 1;
+      } else {
+        tema = 2;
+      }
+    } else {
+      if (noche) {
+        tema = 1;
+      } else {
+        tema = 0;
+      }
+    }
+  }
+}
 function sitios(data){
   if(data.status == "OK"){
-    for(var i = 1; i < data.results.length; i++){
-      slug[i-1] = data.results[i].name;
+    for(var i = 0; i < data.results.length; i++){
+      slug[i] = limpiarSitios(data.results[i].name);
+      slug_pro[i] = data.results[i].types[0];
     }
   }else{
     slug = [];
+    slug_pro = [];
   }
 }

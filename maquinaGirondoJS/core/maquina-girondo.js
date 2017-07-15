@@ -1,6 +1,8 @@
 /*Declaraciones*/
+var tema; //0: calle, 1: noche, 2: plaza, 3:mar
 var lug = "";
 var slug = [];
+var slug_pro = [];
 var prep = ["","de","de","de","de","de","de","de","de","de","de","de","de","con","con","con","con","a","a","a","para","para","por","por","sobre","sobre","entre","entre","sin","sin","hasta","bajo","ante","desde","contra","durante","hacia"];
 var nums = ["","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez","sesenta","ochenta","cien","cuatrocientos","mil"];
 var exeFem = ["flores","paredes","ubres","calles","mujeres","mujer","electricidad","reunión","calle","redes","noches","noche","pared","gente","gentes","ciudad","cariátides","parte","mano","manos","erección","prestidigitación","oraciones","llave","densidad","rechonchez","visión","luz","luces","virgen","carne","vírgenes","multitud","llaves","intensión","gobernación","serpiente","narices","desilusión","dramaticidad","constelaciones","crispaciones","divagaciones","piel"];
@@ -341,7 +343,7 @@ function Verso(c_, r_) {
  } else if (this.c == 1 && this.r == 3) {
     if(slug.length > 0){
       this.comilla = true;
-      this.palabras[0] = slug[int(random(1, slug.length))];
+      this.palabras[0] = slug[int(random(0, slug.length))];
     }else{
       this.palabras[0] = prenda[int(random(1, prenda.length))];
     }
@@ -427,18 +429,22 @@ function Verso(c_, r_) {
 function Titulo(s_) {
   this.poema = s_;
   this.t;
-  
+
+  for (i=0; i < slug.length; i++) {
+    this.poema = this.poema.replace(slug[i], " ");
+  }
+
   this.poema = this.poema.toLowerCase();
   this.poema = this.poema.replace(/\n/g, " ");
   this.poema = this.poema.replace(/\!/g, " ");
   this.poema = this.poema.replace(/\¡/g, " ");
   this.poema = this.poema.replace(/\?/g, " ");
   this.poema = this.poema.replace(/\¿/g, " ");
-  this.poema = this.poema.replace(/\,/, " ");
+  this.poema = this.poema.replace(/\,/g, " ");
   this.poema = this.poema.replace(/\./g, " ");
   this.poema = this.poema.replace(/\;/g, " ");
   this.poema = this.poema.replace(/"/g, " ");
-  
+
   for (i=0; i < conj1.length; i++) {
     this.poema = this.poema.replace(" "+conj1[i]+" ", " ");
   }
@@ -455,7 +461,7 @@ function Titulo(s_) {
   for (i=0; i < nums.length; i++) {
     this.poema = this.poema.replace(" "+nums[i]+" ", " ");
   }
-  
+
   this.poema = depurarPalabras(this.poema);
   this.lista = split(this.poema, ' ');
 
@@ -470,7 +476,7 @@ function Titulo(s_) {
       this.t = "Croquis en "+lug;
     } else if (this.r > 30 && this.r <= 35) {
       this.t = "Fiesta en "+lug;
-    } else if (this.r > 35 && this.r <= 40){ 
+    } else if (this.r > 35 && this.r <= 40){
       this.t = "Paisaje de "+lug;
     } else {
       this.t = this.lista[int(random(0, this.lista.length))];
@@ -480,7 +486,7 @@ function Titulo(s_) {
   if(this.t == "" || this.t == " "){
     if(r <= 50){
       this.t = resto[int(random(1, resto.length))];
-    } else { 
+    } else {
       this.t = "Apunte Callejero";
     }
   }
@@ -774,38 +780,53 @@ function adjGenero(sus2) {
 
 function letraCapital(txt){
   var txtM = txt.substring(0, 1).toUpperCase() + txt.substring(1, txt.length);
-  
+
   return txtM;
 }
 
 function depurarPalabras(p_){
   var p = p_;
-  
-  p = p.replace(/\ba\b/g, " ");
-  p = p.replace(/\bal\b/g, " ");
-  p = p.replace(/\bde\b/g, " ");
-  p = p.replace(/\bo\b/g, " ");
-  p = p.replace(/\by\b/g, " ");
-  p = p.replace(/\bel\b/g, " ");
-  p = p.replace(/\bdel\b/g, " ");
-  p = p.replace(/\blos\b/g, " ");
-  p = p.replace(/\blas\b/g, " ");
-  p = p.replace(/\bla\b/g, " ");
-  p = p.replace(/\ble\b/g, " ");
-  p = p.replace(/\bles\b/g, " ");
-  p = p.replace(/\bcon\b/g, " ");
-  p = p.replace(/\ben\b/g, " ");
-  p = p.replace(/\bsu\b/g, " ");
-  p = p.replace(/\bsus\b/g, " ");
-  p = p.replace(/\bestán\b/g, " ");
-  p = p.replace(/\bes\b/g, " ");
-  p = p.replace(/\bsi\b/g, " ");
-  p = p.replace(/\bse\b/g, " ");
-  p = p.replace(/\bno\b/g, " ");
-  p = p.replace(/\bque\b/g, " ");
+
+  p = p.replace(/\sa\s/gi, " ");
+  p = p.replace(/\bal\b/gi, " ");
+  p = p.replace(/\bde\b/gi, " ");
+  p = p.replace(/\bo\b/gi, " ");
+  p = p.replace(/\by\b/gi, " ");
+  p = p.replace(/\sel\s/gi, " ");
+  p = p.replace(/\bdel\b/gi, " ");
+  p = p.replace(/\blos\b/gi, " ");
+  p = p.replace(/\blas\b/gi, " ");
+  p = p.replace(/\bla\b/gi, " ");
+  p = p.replace(/\ble\b/gi, " ");
+  p = p.replace(/\bles\b/gi, " ");
+  p = p.replace(/\bcon\b/gi, " ");
+  p = p.replace(/\ben\b/gi, " ");
+  p = p.replace(/\bsu\b/gi, " ");
+  p = p.replace(/\bsus\b/gi, " ");
+  p = p.replace(/\bestán\b/gi, " ");
+  p = p.replace(/\bes\b/gi, " ");
+  p = p.replace(/\bsi\b/gi, " ");
+  p = p.replace(/\bse\b/gi, " ");
+  p = p.replace(/\bno\b/gi, " ");
+  p = p.replace(/\bque\b/gi, " ");
   p = p.trim().replace(/ +/g, " ")
-  
+
   return p;
+}
+
+//LIMPIADOR DE NOMBRES-SITIOS
+function limpiarSitios(s_){
+  var s = s_;
+
+  s = s.replace(/\bsrl\b/gi, "");
+  s = s.replace(/\bsa\b/gi, "");
+  s = s.replace(/\bco\b/gi, "");
+  s = s.replace(/\./g, "");
+  s = s.replace(/\bn°/gi, "");
+  //Remover Números
+  s = s.replace(/[0-9\.]+/g, "");
+
+  return s;
 }
 
 //MES
