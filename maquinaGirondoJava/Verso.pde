@@ -191,9 +191,9 @@ public class Verso {
       }
       palabras[0] = prenda[(int)random(1, prenda.length)];
     } else if (c == 1 && e == 3) {
-      if(slug.equals("") == false){
+      if(slug.length > 0){
         comilla = true;
-        palabras[0] = slug;
+        palabras[0] = slug[(int)random(0, slug.length)];
       }else{
         palabras[0] = prenda[(int)random(1, prenda.length)];
       }

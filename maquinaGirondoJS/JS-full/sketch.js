@@ -143,7 +143,7 @@ function draw() {
  if(width < height){
   textSize(map(width, 800, 1980, 24, 38));
   textLeading(map(width, 800, 1980, 24, 38));
-  text(est_1.texto() + est_2.texto() + est_3.texto(), map(width, 800, 1980, 35, 86), map(can1, 10, 18, 110, 70)
+  text(est_1.texto() +" "+ est_2.texto() +" "+ est_3.texto(), map(width, 800, 1980, 35, 86), map(can1, 10, 18, 110, 70)
   + map(height, 600, 768, 20, 70), width - map(width, 800, 1980, 50, 90), height);
  }else{
   text(est_1.texto() + "\n\n" + est_2.texto() + "\n\n" + est_3.texto(), map(width, 800, 1980, 35, 86), map(can1, 10, 18, 200, 90)

@@ -26,11 +26,14 @@ public String depurarPalabras(String p) {
   return p;
 }
 
-public String depCiudad(String lug){
-  String l = lug;
-  l = l.replace("Palermo Hollywood", "Palermo");
-  l = l.replace("General", "Gral.");
-  l = l.replace("Presidente", "Pte.");
+public String limpiarSitios(String s){
+  s = s.replaceAll("(?i)\\bsrl\\b", "");
+  s = s.replaceAll("(?i)\\bsa\\b", "");
+  s = s.replaceAll("(?i)\\bco\\b", "");
+  s = s.replaceAll("\\.", "");
+  s = s.replaceAll("(?i)\\bn°\\b", "");
+  //Remover Números
+  s = s.replaceAll("[0-9]", "");
 
-  return l;
+  return s;
 }

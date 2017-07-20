@@ -1,9 +1,10 @@
 /***************************
  
- Máquina Girondo 1.0
+ Máquina Girondo
+ versión Java
  
- Processing versión: 3+
- KeTai versión: 12+
+ Processing ver: 3+
+ lib KeTai ver: 12+
  
  **************************/
 
@@ -14,8 +15,9 @@ import ketai.sensors.*;
 
 /*LOCALIZACION*/
 KetaiLocation sitio;
-JSONObject json, jsonx;
-String lug, slug;
+JSONObject json, jsonx, jsonsitio;
+String lug;
+String[] slug;
 
 Estrofa poema;
 String[] prep, nums, adj;
@@ -82,6 +84,7 @@ public void setup() {
 
   ////CARGA GRAL/////
   thread("requestData");
+  
 }
 
 public void draw() {

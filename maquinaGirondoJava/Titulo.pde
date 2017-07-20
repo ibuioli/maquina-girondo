@@ -4,6 +4,10 @@ public class Titulo {
 
   Titulo(String poema_) {
     String poema = poema_;
+    
+    for (i=0; i < slug.length; i++) {
+      poema = poema.replaceAll(slug[i], " ");
+    }
 
     poema = poema.replaceAll("\n", " ");
     poema = poema.replaceAll("\\!", " ");

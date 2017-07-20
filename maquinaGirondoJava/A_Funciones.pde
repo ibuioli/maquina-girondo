@@ -39,53 +39,68 @@ public void requestData() {
       }
       if (sitio.getProvider().equals("none")) {
         lug = "";
-        slug = "";
+        slug = new String[0];
         tema = floor(random(0, 3.99));
       } else {
         if (isNetworkAvailable()) {
           json = loadJSONObject("https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+"%2C"+lon+"&language=es");
           jsonx = loadJSONObject("http://api.geonames.org/findNearbyJSON?lat="+lat+"&lng="+lon+"&lang=es&style=short&username=ibuioli");
+          jsonsitio = loadJSONObject("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+lat+","+lon+"&language=es&rankby=distance&types=establishment&key=AIzaSyCXodxfGv7qhVkx4-KJcAbFisjm020GvQI");
         } else {
           lug = "";
-          slug = "";
+          slug = new String[0];
         }
         if (sitio.getProvider().equals("gps")) {
           if (isNetworkAvailable()) {
             if(json.getJSONArray("results").size() != 0){
               for (int i = 0; i < json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").size(); i++) {
                 if(json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").getJSONObject(i).getJSONArray("types").size() > 1){
-                  println(json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").getJSONObject(i).getString("short_name"));
                   lug = json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").getJSONObject(i).getString("short_name");
-                  slug = json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").getJSONObject(i).getString("long_name");
+                  
                   break;
                 }
               }
+              if(jsonsitio.getString("status").equals("OK") == true){
+                slug = new String[jsonsitio.getJSONArray("results").size()];
+                for(int i = 0; i < jsonsitio.getJSONArray("results").size(); i++){
+                  slug[i] = limpiarSitios(jsonsitio.getJSONArray("results").getJSONObject(i).getString("name"));
+                }
+              }else{
+                slug = new String[0];
+              }
             }else{
               lug = "";
-              slug = "";
+              slug = new String[0];
             }
           } else {
             lug = "";
-            slug = "";
+            slug = new String[0];
           }
         } else {
           if (isNetworkAvailable()) {
             if(json.getJSONArray("results").size() != 0){
               for (int i = 0; i < json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").size(); i++) {
                 if(json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").getJSONObject(i).getJSONArray("types").size() > 1){
-                  println(json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").getJSONObject(i).getString("short_name"));
                   lug = json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").getJSONObject(i).getString("short_name");
-                  slug = json.getJSONArray("results").getJSONObject(0).getJSONArray("address_components").getJSONObject(i).getString("long_name");
+
                   break;
                 }
               }
+              if(jsonsitio.getString("status").equals("OK") == true){
+                slug = new String[jsonsitio.getJSONArray("results").size()];
+                for(int i = 0; i < jsonsitio.getJSONArray("results").size(); i++){
+                  slug[i] = limpiarSitios(jsonsitio.getJSONArray("results").getJSONObject(i).getString("name"));
+                }
+              }else{
+                slug = new String[0];
+              }
             }else{
               lug = "";
-              slug = "";
+              slug = new String[0];
             }
           } else {
             lug = "";
-            slug = "";
+            slug = new String[0];
           }
         }
         /*SELECCION TEMA*/
@@ -122,10 +137,9 @@ public void requestData() {
       }
     } else {
       lug = "";
-      slug = "";
+      slug = new String[0];
       tema = floor(random(0, 3.99));   //Definir Tema
     }
-    lug = depCiudad(lug);
     poema = new Estrofa( byte( floor(random(3, 7.99)) ) );  //Cantidad de Versos
     carga = true;
   }
