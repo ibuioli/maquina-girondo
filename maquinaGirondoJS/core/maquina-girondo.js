@@ -5,8 +5,8 @@ var slug = [];
 var slug_pro = [];
 var prep = ["","de","de","de","de","de","de","de","de","de","de","de","de","con","con","con","con","a","a","a","para","para","por","por","sobre","sobre","entre","entre","sin","sin","hasta","bajo","ante","desde","contra","durante","hacia"];
 var nums = ["","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez","sesenta","ochenta","cien","cuatrocientos","mil"];
-var exeFem = ["flores","paredes","ubres","calles","mujeres","mujer","electricidad","reunión","calle","redes","noches","noche","pared","gente","gentes","ciudad","cariátides","parte","mano","manos","erección","prestidigitación","oraciones","llave","densidad","rechonchez","visión","luz","luces","virgen","carne","vírgenes","multitud","llaves","intensión","gobernación","serpiente","narices","desilusión","dramaticidad","constelaciones","crispaciones","divagaciones","piel"];
-var exeMas = ["tranvía","cura","pederastas","paragua","paraguas","callicidas","lema"];
+var exeFem = ["flores","paredes","ubres","calles","mujeres","mujer","electricidad","reunión","calle","redes","noches","noche","pared","gente","gentes","ciudad","cariátides","parte","mano","manos","erección","prestidigitación","oraciones","llave","densidad","rechonchez","visión","luz","luces","virgen","carne","vírgenes","multitud","llaves","intensión","gobernación","serpiente","narices","desilusión","dramaticidad","constelaciones","crispaciones","divagaciones","piel","razón"];
+var exeMas = ["tranvía","cura","pederastas","paragua","paraguas","callicidas","lema","día"];
 
 var cuerpo = ["","ancas","bigotes","brazo","cabellera","cabezas","cadera","cara","caras","cintura","costillas","cuello","dedo","dientes","gargantas","jeta","mamas","mano","meñique","narices","palmas","pelo","piel","poros","pubis","pulmones","pupila","quijada","tetas","tripas","lenguas","nalgas","lomo","cutis","espaldas","labios","pechos","pezones","brazos","piernas","pupilas","trasero","ubres","pies","cabeza","cabelleras","manos","sombras","sonrisas","dedos","nalgas","lomo","cutis","espaldas","labios","pechos","pezones","brazos","piernas","pupilas","trasero","ubres","pies","cabeza","cabelleras","manos","sombras","sonrisas","dedos"];
 var lugar = ["","confitería","colegio","esquina","terrazas","vereda","calles","calle","quioscos","ciudad","calles","casas","calle","ciudad","vereda","iglesia","edificio","iglesia","quioscos","palacio","casino","tabernas","palacio","azoteas","balcones","azoteas","balcones","cariátides","edificio","casas","esquina","terrazas","desierto","paisaje","paraíso","país","plaza","circo","escenario","jardines","patios","jardines","patios","plaza","puerto","laguna","muelles","playa","puentes","laguna","playa","puentes","bahía","muelles","montañas"];
@@ -26,7 +26,6 @@ function Estrofa(c_) {
 
  this.palabras;
  this.estru;
- this.fon = ""; //Fonetica
 
  this.enume;
 
@@ -102,7 +101,6 @@ function Estrofa(c_) {
 
  for (i = 0; i < this.c; i++) { //Asignación de Versos
   this.versos[i] = new Verso(this.palabras[i], this.estru[i]);
-  this.fon = this.fon + "\n" + this.versos[i].fonetica();
  }
 
  for (i = 0; i < this.c; i++) { //Asignación de la Estrofa a la variable String
@@ -142,10 +140,6 @@ function Estrofa(c_) {
  this.texto = function() {
   return this.t;
  }
-
- this.fonetica = function() {
-  return this.fon;
- }
 }
 
 /*Clase generadora de Versos*/
@@ -159,7 +153,6 @@ function Verso(c_, r_) {
  this.pre = false;
  this.comilla = false;
  this.nada = false;
- this.fon;
 
  /////////////////////////////////////////////////////////////
  ///////////////////////ESTRUCTURAS///////////////////////////
@@ -396,21 +389,6 @@ function Verso(c_, r_) {
   this.verso = this.verso.replace(/\bde el\b/g, "del");
  }
 
- this.fon = this.verso;
- this.fon = this.fon.replace(/\bla\b/g, "la,");
- this.fon = this.fon.replace(/\bel\b/g, "el,");
- this.fon = this.fon.replace(/\blos\b/g, "los,");
- this.fon = this.fon.replace(/\blas\b/g, "las,");
- this.fon = this.fon.replace(/\bde\b/g, "de,");
- this.fon = this.fon.replace(/\bo\b/g, "o,");
- this.fon = this.fon.replace(/\by\b/g, "y,");
- this.fon = this.fon.replace(/\bse\b/g, "se,");
- this.fon = this.fon.replace(/\ben\b/g, "en,");
- this.fon = this.fon.replace(/\ble\b/g, "le,");
- this.fon = this.fon.replace(/\bles\b/g, "les,");
- this.fon = this.fon.replace(/\ba\b/g, "a,");
- this.fon = this.fon.replace(/\bsin\b/g, "sin,");
-
  this.escribir = function() {
   push();
   text(this.verso, 10, height / 2);
@@ -419,10 +397,6 @@ function Verso(c_, r_) {
 
  this.texto = function() {
   return this.verso;
- }
-
- this.fonetica = function() {
-  return this.fon;
  }
 }
 

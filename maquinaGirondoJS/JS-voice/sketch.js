@@ -1,3 +1,5 @@
+var textoC = "";
+
 var poema, linea;
 var tema; //0: calle, 1: noche, 2: plaza, 3:mar
 
@@ -6,7 +8,8 @@ function preload() {
 }
 
 function setup() {
- createCanvas(320, 480);
+ var canvas = createCanvas(320, 360);
+ canvas.parent('sketch-holder');
 
  poema = new Estrofa(byte(floor(random(3, 7.99))));
 }
@@ -21,6 +24,8 @@ function draw() {
  textLeading(22);
  text(poema.texto(), 10, -height/8, width - 10, height);
  pop();
+
+ textoC = poema.texto();
 
  noLoop();
 }

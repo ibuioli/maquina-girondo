@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Máquina Girondo - JS-voice</title>
+    <script src="../core/p5.min.js" type="text/javascript"></script>
+    <script src="../core/maquina-girondo.js" type="text/javascript"></script>
+
+    <script type="text/javascript" src="mespeak.js"></script>
+    <script type="text/javascript">
+    	meSpeak.loadConfig("mespeak_config.json");
+    	meSpeak.loadVoice("voices/es-la.json");
+    </script>
+
+    <style>
+      body {padding: 0; margin: 0;background:#ccc;}
+      canvas {vertical-align: top;}
+      h1 {font-family: 'helvetica', sans-serif;color:#333;}
+      button {border:1px solid #999;background:#eee;height:45px;color:#101010;}
+      .content{width:400px;background:#fff;margin:10px auto;padding:15px;}
+    </style>
+  </head>
+  <body>
+    <div class="content">
+
+      <h1>Máquina Girondo Voz</h1>
+      <div id="sketch-holder">
+        <script type="text/javascript" src="sketch.js"></script>
+      </div>
+      <hr>
+      <button type="button" name="button" onclick="girondoRead(textoC)">
+        Girondo 2 Voice
+      </button>
+
+      <audio src="crach.ogg" id="crach" loop></audio>
+      <audio src="busy.ogg" id="busy" loop></audio>
+
+      <script type="text/javascript">
+        document.getElementById("crach").pause();
+        document.getElementById("busy").pause();
+
+        function girondoRead(t){
+          document.getElementById("busy").pause();
+          document.getElementById("crach").play();
+          var st = t.split("\n");
+          var parts = [];
+
+          for (var i = 0; i < st.length; i++) {
+            parts[i] = {text: st[i], variant: "m7", speed: random(105, 140), wordgap: random(0, 1)};
+          }
+
+          meSpeak.speakMultipart(parts, {pitch: 1});
+          setTimeout(function(){
+            meSpeak.stop();
+            document.getElementById("crach").pause();
+            busyTone();
+          }, (t.length*120) + 200);
+        }
+
+        function busyTone(){
+          document.getElementById("busy").play();
+          setTimeout(function(){
+            document.getElementById("busy").pause();
+          }, 8000);
+        }
+
+        function random(min, max) {
+          return Math.floor(Math.random() * (max - min)) + min;
+        }
+      </script>
+    </div>
+  </body>
+</html>
