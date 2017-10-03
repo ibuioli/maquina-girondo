@@ -6,3 +6,5 @@ paragua
 paraguas
 callicidas
 lema
+día
+días

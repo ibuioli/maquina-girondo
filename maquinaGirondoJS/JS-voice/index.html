@@ -36,7 +36,7 @@
 			}
     </style>
   </head>
-  <body onload="startConverting()">
+  <body>
     <div class="content">
 
       <h1>Máquina Girondo Voz</h1>
@@ -68,10 +68,14 @@
           var parts = [];
 
           for (var i = 0; i < st.length; i++) {
-            parts[i] = {text: st[i], variant: "m7", speed: random(105, 140), wordgap: random(0, 1)};
+            if ((st[i].match(/\!/g)||[]).length >= 1 || (st[i].match(/\?/g)||[]).length >= 1) {
+              parts[i] = {text: st[i], speed: 120, wordgap: 0};
+            }else{
+              parts[i] = {text: st[i], speed: random(105, 140), wordgap: random(0, 1)};
+            }
           }
 
-          meSpeak.speakMultipart(parts, {pitch: 1});
+          meSpeak.speakMultipart(parts, {pitch: 1, variant: "m7"});
           setTimeout(function(){
             meSpeak.stop();
             document.getElementById("crach").pause();
