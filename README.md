@@ -5,9 +5,11 @@ Algortimo de Textos Generativos (Versos y Poemas) con partido estético del poet
 Se parte de un verso generado de forma completamente aleatoria empleando datos de estructura y vocabulario del autor Oliverio Girondo. El sistema selecciona dicho verso y a partir de ahí los siguientes versos se construyen en relación al verso anterior, hasta completar la totalidad de versos elegidos. Las palabras se escogen acorde a uno de los cuatro temas de la poesía de Girondo: Calle, Noche, Plaza, Mar.
 Presente en versiones:
 
-* Versión Java-Android (Processing)
+* Versión Java-Android (Processing) [**discontinuado**]
+* Versión JavaScript-Android (P5.js - Cordova)
 * Version JavaScript (P5.js)
 * Versión JavaScript de bajos recursos (P5.js)
+* Versión JavaScript con Voz (P5.js - JS API)
 
 ### clase Verso:
 

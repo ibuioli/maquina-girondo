@@ -1,3 +1,4 @@
+//DISCONTINUADO - Usar versión JS-Android//
 /***************************
  
  Máquina Girondo
