@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Máquina Girondo</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <script type="text/javascript" src="cordova.js"></script>
+
+  <app-root>
+    <div class="loaders-container" *ngIf="!check">
+      <div class="spinner">
+          <div class="circle"></div>
+      </div>
+    </div>
+    <style>
+      .loaders-container{width:100%;height:100%;background:#e6e3c3;}
+      .loaders-container .spinner{box-sizing:border-box;width:80px;height:80px;position:absolute;left:50%;top:50%;z-index:1;margin-top:-35px;margin-left:-35px;}
+      .circle{box-sizing:border-box;width:80px;height:80px;border-radius:100%;border:5px solid #bbb;border-top-color:#101010;-webkit-animation:spin 1s infinite linear;animation:spin 1s infinite linear;}
+      @-webkit-keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg);}}
+      @keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg);}}
+    </style>
+  </app-root>
+</body>
+</html>

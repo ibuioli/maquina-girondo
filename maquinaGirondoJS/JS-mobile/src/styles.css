@@ -1,0 +1,56 @@
+@font-face {
+    font-family: girondoFont;
+    src: url('./assets/timesbd.otf');
+}
+
+html {
+  overflow-x:hidden;
+  overflow-y:hidden;
+  height: 100%;
+}
+
+body {
+  overflow-x:hidden;
+  overflow-y:hidden;
+  font-family: girondoFont;
+  padding: 0;
+  margin: 0;
+  background: url('./assets/back.jpg') no-repeat;
+  background-size:100% 100%;
+  min-height: 100%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#cont{
+  position:relative;
+  opacity:0.97;
+  color:#0a0800;
+}
+
+#title{
+  width:100%;
+  text-align:center;
+  text-transform: uppercase;
+  font-weight: 900;
+  margin:40px 0;
+  text-shadow: 1px 0px 0px #0a0800,-1px 0px 0px #0a0800;
+}
+
+#poem{
+  font-size:24px;
+  padding:10px;
+}
+
+#sig{
+  width:100%;
+  text-align:right;
+  right:10px;
+  position:relative;
+  text-transform: uppercase;
+  font-size:15px;
+}
