@@ -6,10 +6,9 @@ Se parte de un verso generado de forma completamente aleatoria empleando datos d
 Presente en versiones:
 
 * Versión Java-Android (Processing) [**discontinuado**]
-* Versión JavaScript-Android (P5.js - Cordova)
-* Version JavaScript (P5.js)
-* Versión JavaScript de bajos recursos (P5.js)
-* Versión JavaScript con Voz (P5.js - JS API)
+* Versión Mobile (TypeScript - Angular - Cordova)
+* Version Web (TypeScript - Angular)
+* Versión Voice (P5.js - JS API)
 
 ### clase Verso:
 
