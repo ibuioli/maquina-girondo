@@ -1,4 +1,4 @@
-<div id="cont" *ngIf="check">
+<div id="cont" (touchend)="newPoem($event)" *ngIf="check">
   <h1 id="title">{{title}}</h1>
   <p id="poem" [innerHTML]="poem"></p>
   <p id="sig">{{sig}}</p>

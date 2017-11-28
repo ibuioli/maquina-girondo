@@ -5,7 +5,6 @@ declare var navigator:any;
 
 @Injectable()
 export class GeolocService {
-  public mobile:boolean = false;
   public noche:boolean = false;
 
   constructor(public s:SystemService) {
@@ -15,29 +14,35 @@ export class GeolocService {
     let n = d.getHours();
 
     if(n >= 19 || n >= 0 && n <= 5){
-      this.noche = false;
-    }else{
       this.noche = true;
+    }else{
+      this.noche = false;
     }
 
-    if(this.mobile){
-      document.addEventListener("deviceready", this.onDeviceReady, false);
-    }else{
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-          this_.getLug(position.coords.latitude, position.coords.longitude);
+    document.addEventListener("deviceready", function(){
+      navigator.geolocation.getCurrentPosition(function(position){
+        this_.getLug(position.coords.latitude, position.coords.longitude);
+        this_.getLugPro(position.coords.latitude, position.coords.longitude);
+      }, function(error){
+        console.log('code: '+ error.code+'\n'+'message: '+error.message+'\n');
+        GeoData.lug = "";
+        GeoData.tema = this.s.random(0, 3.99);
+      });
+    }, false);
 
-          this_.getLugPro(position.coords.latitude, position.coords.longitude);
-        }, function(err){
-          console.log("ERR: Geolocation fail");
-          GeoData.lug = "";
-          GeoData.tema = s.random(0, 3.99);
-        });
-      }else{
-        console.log("ERR: Geolocation not supported");
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        this_.getLug(position.coords.latitude, position.coords.longitude);
+        this_.getLugPro(position.coords.latitude, position.coords.longitude);
+      }, function(err){
+        console.log("ERR: Geolocation fail");
         GeoData.lug = "";
         GeoData.tema = s.random(0, 3.99);
-      }
+      });
+    }else{
+      console.log("ERR: Geolocation not supported");
+      GeoData.lug = "";
+      GeoData.tema = s.random(0, 3.99);
     }
   }
 
@@ -54,17 +59,6 @@ export class GeolocService {
     return s;
   }
 
-  //MOBILE
-  onDeviceReady(){
-    navigator.geolocation.getCurrentPosition(function(position){
-      this.getLug(position.coords.latitude, position.coords.longitude);
-      this.getLugPro(position.coords.latitude, position.coords.longitude);
-    }, function(error){
-      console.log('code: '+ error.code+'\n'+'message: '+error.message+'\n');
-      GeoData.lug = "";
-      GeoData.tema = this.s.random(0, 3.99);
-    });
-  }
   ///////////////////////////////////////////////////////////////////////////////
   getLug(lat, lng){
     let this_ = this;

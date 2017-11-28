@@ -31,6 +31,7 @@ Presente en versiones:
 
 ##### Testeada en Emuladores:
 
+* Galaxy S5 - Android Generico (Google Chrome Webview)
 * Nexus 1 - Android 4.1.2 (Android Virtual Device)
 * Nexus 4 - Android 4.1.2 (Android Virtual Device)
 * Móvil Genérico - Android 4.2 (Manymo)

@@ -13,10 +13,6 @@ export class TituloService {
     let poem:string = s;
     let t:string;
 
-    for (let i=0; i < GeoData.slug.length; i++) {
-      poem = poem.replace(GeoData.slug[i], " ");
-    }
-
     poem = poem.toLowerCase();
     poem = poem.replace(/\n/g, " ");
     poem = poem.replace(/\!/g, " ");
@@ -27,6 +23,10 @@ export class TituloService {
     poem = poem.replace(/\./g, " ");
     poem = poem.replace(/\;/g, " ");
     poem = poem.replace(/"/g, " ");
+
+    for (let i=0; i < GeoData.slug.length; i++) {
+      poem = poem.replace(GeoData.slug[i].toLowerCase(), " ");
+    }
 
     for (let i=0; i < Vocabulary.conj1.length; i++) {
       poem = poem.replace(" "+Vocabulary.conj1[i]+" ", " ");
@@ -86,6 +86,7 @@ export class TituloService {
     p = p.replace(/\bo\b/gi, " ");
     p = p.replace(/\by\b/gi, " ");
     p = p.replace(/\sel\s/gi, " ");
+    p = p.replace(/\bel\b/gi, " ");
     p = p.replace(/\bdel\b/gi, " ");
     p = p.replace(/\blos\b/gi, " ");
     p = p.replace(/\blas\b/gi, " ");

@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, ElementRef, Renderer } from '@angular/core';
 import { EstrofaService } from './core/estrofa.service';
 import { TituloService } from './core/titulo.service';
 import { SystemService } from './core/system.service';
@@ -21,13 +21,11 @@ export class AppComponent {
   pMov:number;
   value:number = 0;
 
-  constructor(public s: SystemService, public e: EstrofaService,
-    public t: TituloService, public g:GeolocService){
-  }
-
-  ngOnInit(){
+  constructor(public s: SystemService, public e: EstrofaService, public t: TituloService, public g:GeolocService,
+  public el: ElementRef, public renderer: Renderer){
     let this_ = this;
-    document.addEventListener("touchmove", function(e){
+
+    renderer.listenGlobal('document', 'touchmove', (e) => {
       if(this_.pMov === undefined){
         this_.pMov = e.touches[0].clientX;
       }
@@ -41,33 +39,61 @@ export class AppComponent {
       this_.pMov = e.touches[0].clientX;
     });
 
-    document.addEventListener("touchend", function(e){
-      this_.newPoem();
+    renderer.listenGlobal('document', 'touchend', (e) => {
       document.getElementById('cont').style.opacity = "0.97";
       document.getElementById('cont').style.left = "0px";
     });
   }
 
+  ngOnInit(){}
+
   ngDoCheck(){
+    let this_ = this;
+
+    setTimeout(function(){
+      if(GeoData.lug === undefined){
+        GeoData.lug = "";
+        GeoData.tema = this_.s.random(0, 3.99);
+      }
+    }, 8000);
+
     if(GeoData.lug !== undefined && GeoData.tema >= 0 && this.check === false){
-      this.newPoem();
+      this.newPoem(0);
       this.check = true;
     }
   }
 
-  newPoem(){
-    let prePoem = this.e.Estrofa(this.s.random(5, 9));
-    ///////////////////////////////////////////////////////////////
-    this.title = this.t.Titulo(prePoem);
-    ///////////////////////////////////////////////////////////////
-    if(GeoData.lug !== ''){
-      this.sig = GeoData.lug+", "+this.s.dateEs()+".";
+  newPoem(e:any){
+    let posX;
+
+    if(Number.isInteger(e)){
+      posX = e;
     }else{
-      this.sig = this.s.dateEs()+".";
+      posX = e.changedTouches[0].clientX;
     }
-    ///////////////////////////////////////////////////////////////
-    //HTML FORMAT
-    this.poem = prePoem.replace(/\n/g, "<br />");
+
+    if(posX < (screen.width/2) ){
+      this.check = false;
+      let prePoem = this.e.Estrofa(this.s.random(5, 9));
+      ///////////////////////////////////////////////////////////////
+      this.title = this.t.Titulo(prePoem);
+      ///////////////////////////////////////////////////////////////
+      if(GeoData.lug !== ''){
+        if(GeoData.lug == undefined){
+          this.sig = this.s.dateEs()+".";
+        }else{
+          this.sig = GeoData.lug+", "+this.s.dateEs()+".";
+        }
+      }else{
+        this.sig = this.s.dateEs()+".";
+      }
+      ///////////////////////////////////////////////////////////////
+      //HTML FORMAT
+      this.poem = prePoem.replace(/\n/g, "<br />");
+      //
+      this.check = true;
+    }
+
   }
 
 }
