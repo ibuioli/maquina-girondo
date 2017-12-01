@@ -1,3 +1,0 @@
-# Máquina Girondo App Mobile
-
-
