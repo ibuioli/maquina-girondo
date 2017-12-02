@@ -2,8 +2,14 @@
   <div id="cont" *ngIf="check">
     <h1 id="title">{{title}}</h1>
     <div class="row">
-      <div id="poem1" class="column" [innerHTML]="poem1"></div>
-      <div id="poem2" class="column" [innerHTML]="poem2"></div>
+      <div id="poem1" class="column">
+        <p [innerHTML]="poem1"></p>
+        <p [innerHTML]="poem2"></p>
+      </div>
+      <div id="poem2" class="column">
+        <p [innerHTML]="poem3"></p>
+        <p [innerHTML]="poem4"></p>
+      </div>
     </div>
     <p id="sig">{{sig}}</p>
   </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, ElementRef, Renderer } from '@angular/core';
+import { Component, OnInit, DoCheck} from '@angular/core';
 import { EstrofaService } from '../core/estrofa.service';
 import { TituloService } from '../core/titulo.service';
 import { SystemService } from '../core/system.service';
@@ -15,6 +15,8 @@ export class WebComponent implements OnInit {
   title:string = '';
   poem1:string = '';
   poem2:string = '';
+  poem3:string = '';
+  poem4:string = '';
   sig:string = '';
   //////////////////
   check:boolean = false;
@@ -22,29 +24,7 @@ export class WebComponent implements OnInit {
   pMov:number;
   value:number = 0;
 
-  constructor(public s: SystemService, public e: EstrofaService, public t: TituloService, public g:GeolocService,
-  public el: ElementRef, public renderer: Renderer){
-    let this_ = this;
-
-    renderer.listenGlobal('document', 'touchmove', (e) => {
-      if(this_.pMov === undefined){
-        this_.pMov = e.touches[0].clientX;
-      }
-      this_.value += e.touches[0].clientX - this_.pMov;
-
-      document.getElementById('cont').style.opacity =
-      this_.s.constrain(this_.s.map_range(this_.value, 0, -200, 0.97, 0.2), 0.2, 0.97).toString();
-
-      document.getElementById('cont').style.left = this_.value.toString()+"px";
-
-      this_.pMov = e.touches[0].clientX;
-    });
-
-    renderer.listenGlobal('document', 'touchend', (e) => {
-      document.getElementById('cont').style.opacity = "0.97";
-      document.getElementById('cont').style.left = "0px";
-    });
-  }
+  constructor(public s: SystemService, public e: EstrofaService, public t: TituloService, public g:GeolocService){}
 
   ngOnInit(){}
 
@@ -81,8 +61,10 @@ export class WebComponent implements OnInit {
   newPoem(){
 
     this.check = false;
-    let prePoem1 = this.e.Estrofa(this.s.random(7, 11));
-    let prePoem2 = this.e.Estrofa(this.s.random(10, 16));
+    let prePoem1 = this.e.Estrofa(this.s.random(5, 7));
+    let prePoem2 = this.e.Estrofa(this.s.random(4, 6));
+    let prePoem3 = this.e.Estrofa(this.s.random(6, 8));
+    let prePoem4 = this.e.Estrofa(this.s.random(4, 7));
     ///////////////////////////////////////////////////////////////
     this.title = this.t.Titulo(prePoem1);
     ///////////////////////////////////////////////////////////////
@@ -99,6 +81,8 @@ export class WebComponent implements OnInit {
     //HTML FORMAT
     this.poem1 = prePoem1.replace(/\n/g, "<br />");
     this.poem2 = prePoem2.replace(/\n/g, "<br />");
+    this.poem3 = prePoem3.replace(/\n/g, "<br />");
+    this.poem4 = prePoem4.replace(/\n/g, "<br />");
     //
     this.check = true;
 
