@@ -1,0 +1,26 @@
+<div id="body">
+  <div id="cont" *ngIf="check">
+    <h1 id="title">{{title}}</h1>
+    <div class="row">
+      <div id="poem1" class="column" [innerHTML]="poem1"></div>
+      <div id="poem2" class="column" [innerHTML]="poem2"></div>
+    </div>
+    <p id="sig">{{sig}}</p>
+  </div>
+</div>
+
+<div class="nextPoem"></div>
+<a href="#" class="clickNextPoem" (click)="nextPoemAni()"></a>
+
+<div class="ng-loaders-container" *ngIf="!check">
+  <div class="ng-spinner">
+      <div class="ng-circle"></div>
+  </div>
+</div>
+<style>
+  .ng-loaders-container{width:100%;height:100%;}
+  .ng-loaders-container .ng-spinner{box-sizing:border-box;width:80px;height:80px;position:absolute;left:50%;top:50%;z-index:1;margin-top:-35px;margin-left:-35px;}
+  .ng-circle{box-sizing:border-box;width:80px;height:80px;border-radius:100%;border:5px solid #bbb;border-top-color:#101010;-webkit-animation:spin 1s infinite linear;animation:spin 1s infinite linear;}
+  @-webkit-keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg);}}
+  @keyframes spin{100%{-webkit-transform:rotate(360deg);transform:rotate(360deg);}}
+</style>

@@ -9,10 +9,14 @@ import { GeolocService } from './core/geoloc.service';
 import { VersoService } from './core/verso.service';
 import { EstrofaService } from './core/estrofa.service';
 import { TituloService } from './core/titulo.service';
+import { MobileComponent } from './mobile/mobile.component';
+import { WebComponent } from './web/web.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MobileComponent,
+    WebComponent
   ],
   imports: [
     BrowserModule,

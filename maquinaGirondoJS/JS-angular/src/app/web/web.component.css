@@ -1,0 +1,104 @@
+@keyframes blink {
+    0%   {opacity: 0.3;}
+    50%  {opacity: 0.9;}
+    100%  {opacity: 0.3;}
+}
+@keyframes fadeOut {
+    0%   {opacity: 1;}
+    100%  {opacity: 0;}
+}
+@keyframes fadeIn {
+    0%   {opacity: 0;}
+    100%  {opacity: 1;}
+}
+
+#body {
+  overflow-x:hidden;
+  overflow-y:hidden;
+  padding: 0;
+  margin: 0;
+  background: url('../../assets/back.jpg') repeat-x;
+  background-size:50% 100%;
+  height:100%;
+  min-height: 100%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#cont{
+  width:100%;
+  height:100%;
+  position:relative;
+  opacity:0.97;
+  color:#0a0800;
+}
+
+#title{
+  width:50%;
+  text-align:center;
+  text-transform: uppercase;
+  font-weight: 900;
+  text-shadow: 1px 0px 0px #0a0800,-1px 0px 0px #0a0800;
+  margin:0;
+  padding:40px 0;
+}
+#poem1{
+  font-size:24px;
+  padding:10px;
+  width: 50%;
+  float: left;
+}
+#poem2{
+  font-size:24px;
+  padding:10px;
+  margin-left:51%;
+  position:relative;
+  top:-80px;
+}
+
+#sig{
+  width:100%;
+  text-align:right;
+  right:10px;
+  position:relative;
+  text-transform: uppercase;
+  font-size:15px;
+  top:-80px;
+}
+
+.nextPoem{
+  width:0px;
+  height:0px;
+  position:fixed;
+  bottom:0;
+  right:-80px;
+  border-left: 80px solid transparent;
+  border-right: 80px solid transparent;
+  border-bottom: 80px solid #111;
+  animation-name: blink;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+.clickNextPoem{
+  display:block;
+  position:fixed;
+  bottom:0;
+  right:0;
+  width:80px;
+  height:80px;
+  outline: none;
+}
+.fadeIn{
+  animation-name: fadeIn;
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
+.fadeOut{
+  animation-name: fadeOut;
+  animation-duration: 0.8s;
+  animation-fill-mode: both;
+}
