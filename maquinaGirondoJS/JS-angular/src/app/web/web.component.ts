@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { EstrofaService } from '../core/estrofa.service';
 import { TituloService } from '../core/titulo.service';
 import { SystemService } from '../core/system.service';
@@ -26,22 +26,9 @@ export class WebComponent implements OnInit {
 
   constructor(public s: SystemService, public e: EstrofaService, public t: TituloService, public g:GeolocService){}
 
-  ngOnInit(){}
-
-  ngDoCheck(){
-    let this_ = this;
-
-    setTimeout(function(){
-      if(GeoData.lug === undefined){
-        GeoData.lug = "";
-        GeoData.tema = this_.s.random(0, 3.99);
-      }
-    }, 8000);
-
-    if(GeoData.lug !== undefined && GeoData.tema >= 0 && this.check === false){
-      this.newPoem();
-      this.check = true;
-    }
+  ngOnInit(){
+    this.newPoem();
+    this.check = true;
   }
 
   nextPoemAni(){
