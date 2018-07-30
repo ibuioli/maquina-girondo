@@ -1,8 +1,8 @@
 # Maquina Girondo
 
-Algorithm of Generative Texts (Verses and Poems) with the aesthetic party of the argentine poet Oliverio Girondo.
+Algorithm of Generative Texts (Verses and Poems) with the aesthetic party of the argentine poet Oliverio Girondo. Initially developed for Investigation project 34/0404 (UNA): "Oliverio Expandido: Una versión hipermediática de los '20 poemas para leer en el tranvía' de Oliverio Girondo", years 2016/2017.
 
-It starts from a verse generated in a completely random way using data of structure and vocabulary from argentine author Oliverio Girondo. The system selects this verse and from there the following verses are constructed in relation to the previous verse, until completing the totality of chosen verses. The words are chosen according to one of the four themes of the Girondo's poetry: Street, Night, Plaza, Sea.
+It starts from a verse generated in a completely random way using data of structure and vocabulary from argentine author Oliverio Girondo. The system selects this verse and from there the following verses are constructed in relation to the previous verse, until completing the totality of chosen verses. The words are chosen according to one of the four themes of the Girondo's poetry: Street, Night, Plaza and Sea.
 Present in versions:
 
 * Java-Android Version (Processing) [**deprecated**]
