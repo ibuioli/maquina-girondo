@@ -1,40 +1,40 @@
 # Maquina Girondo
 
-Algortimo de Textos Generativos (Versos y Poemas) con partido estético del poeta argentino Oliverio Girondo.
+Algorithm of Generative Texts (Verses and Poems) with the aesthetic party of the argentine poet Oliverio Girondo.
 
-Se parte de un verso generado de forma completamente aleatoria empleando datos de estructura y vocabulario del autor Oliverio Girondo. El sistema selecciona dicho verso y a partir de ahí los siguientes versos se construyen en relación al verso anterior, hasta completar la totalidad de versos elegidos. Las palabras se escogen acorde a uno de los cuatro temas de la poesía de Girondo: Calle, Noche, Plaza, Mar.
-Presente en versiones:
+It starts from a verse generated in a completely random way using data of structure and vocabulary from argentine author Oliverio Girondo. The system selects this verse and from there the following verses are constructed in relation to the previous verse, until completing the totality of chosen verses. The words are chosen according to one of the four themes of the Girondo's poetry: Street, Night, Plaza, Sea.
+Present in versions:
 
-* Versión Java-Android (Processing) [**discontinuado**]
-* Versión Mobile (TypeScript - Angular - Cordova)
-* Version Web (TypeScript - Angular)
-* Versión Voice (P5.js - JS API)
+* Java-Android Version (Processing) [**deprecated**]
+* Mobile Version (TypeScript - Angular - Cordova)
+* Web Version (TypeScript - Angular)
+* Voice Version (P5.js - JS API)
 
-### clase Verso:
+### class Verso:
 
 * Cantidad de Palabras [byte] [1 - 7]
 * Estructura sintáctica del verso [byte] [0 - 2]
 
-### clase Estrofa:
+### class Estrofa:
 
 * Cantidad de Versos [byte] [mayor a 1]
 
-### clase Titulo:
+### class Titulo:
 
 * Un String [El String de una Estrofa]
 
-##### Testeada en Dispositivos:
+##### Testing on Devices:
 
 * Samsung GT-S6790 - Android 4.1.2
 * Huawey SCL-L03 - Android 5.1.1
 * Motorola Moto G (3rd Gen) - Android 6.0.1
 
-##### Testeada en Emuladores:
+##### Testing on Emulators:
 
-* Galaxy S5 - Android Generico (Google Chrome Webview)
+* Galaxy S5 - Generic Android (Google Chrome Webview)
 * Nexus 1 - Android 4.1.2 (Android Virtual Device)
 * Nexus 4 - Android 4.1.2 (Android Virtual Device)
-* Móvil Genérico - Android 4.2 (Manymo)
+* Generic Mobile - Android 4.2 (Manymo)
 * Samsung Galaxy S6 - Android 5.1.0 (Genymotion)
-* Móvil Genérico - Android 5.0.0 (Genymotion)
-* Tablet Genérica - Android 5.0.0 (Genymotion)
+* Generic Mobile - Android 5.0.0 (Genymotion)
+* Generic Tablet - Android 5.0.0 (Genymotion)
