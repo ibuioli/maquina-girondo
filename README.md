@@ -12,16 +12,16 @@ Present in versions:
 
 ### class Verso:
 
-* Cantidad de Palabras [byte] [1 - 7]
-* Estructura sintáctica del verso [byte] [0 - 2]
+* Words quantity [byte] [1 - 7]
+* Syntactic structure [byte] [0 - 2]
 
 ### class Estrofa:
 
-* Cantidad de Versos [byte] [mayor a 1]
+* Quantity [byte] [greater than 1]
 
 ### class Titulo:
 
-* Un String [El String de una Estrofa]
+* String [Estrofa String]
 
 ##### Testing on Devices:
 
