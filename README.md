@@ -8,7 +8,7 @@ Present in versions:
 * Java-Android Version (Processing) [**deprecated**]
 * Mobile Version (TypeScript - Angular - Cordova)
 * Web Version (TypeScript - Angular)
-* Voice Version (P5.js - JS API)
+* Voice Version (TypeScript - Angular)
 
 ### class Verso:
 
