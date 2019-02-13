@@ -1,0 +1,10 @@
+.b_container{
+    font-family: sans-serif;
+}
+.container{
+    width:80%;
+    margin:10px auto;
+}
+#debug{
+    padding:10px;
+}
