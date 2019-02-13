@@ -6,84 +6,84 @@ export class SystemService {
   constructor() { }
 
   //////////////////////////////////////////////////////////////
-  //SYSTEM FUNs
+  // SYSTEM FUNs
   //////////////////////////////////////////////////////////////
 
-  letraCapital(txt){
-    let txtM = txt.substring(0, 1).toUpperCase() + txt.substring(1, txt.length);
+  letraCapital(txt) {
+    const txtM = txt.substring(0, 1).toUpperCase() + txt.substring(1, txt.length);
 
     return txtM;
   }
 
-  //MES
+  // MES
   dateEs() {
-    let m;
-    let d = new Date();
-    let mes = d.getMonth();
-    let a = d.getFullYear();
+    let m: any;
+    const d = new Date();
+    const mes = d.getMonth();
+    const a = d.getFullYear();
 
-    switch(mes) {
+    switch (mes) {
       case 0:
-        m = "Enero";
+        m = 'Enero';
         break;
       case 1:
-        m = "Febrero";
+        m = 'Febrero';
         break;
       case 2:
-        m = "Marzo";
+        m = 'Marzo';
         break;
       case 3:
-        m = "Abril";
+        m = 'Abril';
         break;
       case 4:
-        m = "Mayo";
+        m = 'Mayo';
         break;
       case 5:
-        m = "Junio";
+        m = 'Junio';
         break;
       case 6:
-        m = "Julio";
+        m = 'Julio';
         break;
       case 7:
-        m = "Agosto";
+        m = 'Agosto';
         break;
       case 8:
-        m = "Septiembre";
+        m = 'Septiembre';
         break;
       case 9:
-        m = "Octubre";
+        m = 'Octubre';
         break;
       case 10:
-        m = "Noviembre";
+        m = 'Noviembre';
         break;
       case 11:
-        m = "Diciembre";
+        m = 'Diciembre';
         break;
       default:
-        m = "";
+        m = '';
     }
 
-    return m + " " + a;
+    return m + ' ' + a;
   }
 
-  random(min:number, max:number){
+  random(min: number, max: number) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
-  map_range(value:number, low1:number, high1:number, low2:number, high2:number) {
+  map_range(value: number, low1: number, high1: number, low2: number, high2: number) {
     return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
   }
 
-  constrain(value:number, low:number, high:number){
+  constrain(value: number, low: number, high: number) {
     return Math.min(Math.max(value, low), high);
   }
 
-  loadJSON(url, callback) {
-    let xhr = new XMLHttpRequest();
+  loadJSON(url: string, callback) {
+    const xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.responseType = 'json';
     xhr.onload = function() {
-      var status = xhr.status;
+      const status = xhr.status;
       if (status === 200) {
         callback(null, xhr.response);
       } else {
