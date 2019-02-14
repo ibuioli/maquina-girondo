@@ -9,14 +9,14 @@ export class SystemService {
   // SYSTEM FUNs
   //////////////////////////////////////////////////////////////
 
-  letraCapital(txt) {
+  public letraCapital(txt: string): string {
     const txtM = txt.substring(0, 1).toUpperCase() + txt.substring(1, txt.length);
 
     return txtM;
   }
 
   // MES
-  dateEs() {
+  public dateEs(): string {
     let m: any;
     const d = new Date();
     const mes = d.getMonth();
@@ -66,19 +66,19 @@ export class SystemService {
     return m + ' ' + a;
   }
 
-  random(min: number, max: number) {
+  public random(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
-  map_range(value: number, low1: number, high1: number, low2: number, high2: number) {
+  public map_range(value: number, low1: number, high1: number, low2: number, high2: number): number {
     return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
   }
 
-  constrain(value: number, low: number, high: number) {
+  public constrain(value: number, low: number, high: number): number {
     return Math.min(Math.max(value, low), high);
   }
 
-  loadJSON(url: string, callback) {
+  public loadJSON(url: string, callback: any): void {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', url, true);
     xhr.responseType = 'json';

@@ -11,7 +11,7 @@ export class ToolsService {
   constructor(public s: SystemService) { }
 
   // PONER ARTICULO
-  conArt(sus2: string) {
+  public conArt(sus2: string): string {
    let fsus: string;
    const sub1 = sus2.substring(sus2.length - 1, sus2.length);
    let fem = false;
@@ -88,7 +88,7 @@ export class ToolsService {
   }
 
   // CONJUGAR VERBO
-  conVerb(sus2: string) {
+  public conVerb(sus2: string): string {
    const sub1 = sus2.substring(sus2.length - 1, sus2.length);
    let verb;
 
@@ -102,8 +102,8 @@ export class ToolsService {
   }
 
   // PLURAL
-  esPlural(caso: number) {
-   let sus2;
+  public esPlural(caso: number): string {
+   let sus2: string;
 
    if (caso === 0) {
     sus2 = Vocabulary.cuerpo[this.s.random(1, Vocabulary.cuerpo.length)];
@@ -126,8 +126,8 @@ export class ToolsService {
   }
 
   // SINGULAR
-  esSingular(caso: number) {
-   let sus2;
+  public esSingular(caso: number): string {
+   let sus2: string;
 
    if (caso === 0) {
     sus2 = Vocabulary.cuerpo[this.s.random(1, Vocabulary.cuerpo.length)];
@@ -150,14 +150,14 @@ export class ToolsService {
   }
 
   // ADJECTIVO
-  adjGenero(sus2) {
+  public adjGenero(sus2: string): string {
    sus2 = sus2.replace('la ', '');
    sus2 = sus2.replace('las ', '');
-   let adj2;
+   let adj2: string;
    const sub1 = sus2.substring(sus2.length - 1, sus2.length);
    const suadj = Vocabulary.adj[this.s.random(1, Vocabulary.adj.length)];
-   let sadj;
-   let vocal;
+   let sadj: string;
+   let vocal: boolean;
    let fem = false;
    let mas = false;
    const uletra = suadj.substring(suadj.length - 1, suadj.length);
@@ -274,7 +274,7 @@ export class ToolsService {
   }
 
   // TEMA
-  temaLugar() {
+  public temaLugar(): string {
    let nlugar = '';
 
    if (GeoData.tema === undefined) {
