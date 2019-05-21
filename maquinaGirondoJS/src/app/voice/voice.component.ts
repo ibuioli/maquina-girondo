@@ -17,6 +17,7 @@ export class VoiceComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.debugButton();
   }
 
   public newPoem(): string {
@@ -27,6 +28,6 @@ export class VoiceComponent implements OnInit {
   public debugButton(): void {
     const poem = this.newPoem();
     this.debug.nativeElement.innerHTML = poem.replace(/\n/g, '<br>');
-    meSpeak.speak(poem, {variant: 'm7', pitch: 40, speed: 145, wordgap: 1});
+    meSpeak.speak(poem.replace(/\n/g, '...'), {variant: 'm7', pitch: 40, speed: 145, wordgap: 1});
   }
 }

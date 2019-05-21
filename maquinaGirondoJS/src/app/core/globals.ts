@@ -88,7 +88,8 @@ export class Exe {
     'divagaciones',
     'piel',
     'razón',
-    'intención'
+    'intención',
+    'desnudez'
   ];
 
   // EXE MASCULINAS
