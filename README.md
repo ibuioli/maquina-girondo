@@ -9,6 +9,7 @@ Present in versions:
 * Mobile Version (TypeScript - Angular - Cordova)
 * Web Version (TypeScript - Angular)
 * Voice Version (TypeScript - Angular)
+* Python Version (Python - ideal for RasPi devices)
 
 ### class Verso:
 
