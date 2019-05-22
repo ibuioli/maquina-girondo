@@ -9,4 +9,4 @@ from tools import Tools
 class Verso:
 
 	def test(self):
-		return Tools().conVerb('flores')
+		return Tools().esPlural(1)

@@ -81,3 +81,47 @@ class Tools:
             verb = Vocabulary.conj2[random.randint(1, len(Vocabulary.conj2))]
         
         return verb
+
+    # PLURAL
+    def esPlural(self, caso):
+        sus2 = ''
+
+        if caso == 0:
+            sus2 = Vocabulary.cuerpo[random.randint(1, len(Vocabulary.cuerpo))]
+        elif caso == 1:
+            sus2 = Vocabulary.lugar[random.randint(1, len(Vocabulary.lugar))]
+        elif caso == 2:
+            sus2 = Vocabulary.persona[random.randint(1, len(Vocabulary.persona))]
+        elif caso == 3:
+            sus2 = Vocabulary.prenda[random.randint(1, len(Vocabulary.prenda))]
+        else:
+            sus2 = Vocabulary.resto[random.randint(1, len(Vocabulary.resto))]
+        
+        sub1 = sus2[-1:]
+
+        if sub1 == 's':
+            return sus2
+        else:
+            return self.esPlural(caso)
+
+    # PLURAL
+    def esSingular(self, caso):
+        sus2 = ''
+
+        if caso == 0:
+            sus2 = Vocabulary.cuerpo[random.randint(1, len(Vocabulary.cuerpo))]
+        elif caso == 1:
+            sus2 = Vocabulary.lugar[random.randint(1, len(Vocabulary.lugar))]
+        elif caso == 2:
+            sus2 = Vocabulary.persona[random.randint(1, len(Vocabulary.persona))]
+        elif caso == 3:
+            sus2 = Vocabulary.prenda[random.randint(1, len(Vocabulary.prenda))]
+        else:
+            sus2 = Vocabulary.resto[random.randint(1, len(Vocabulary.resto))]
+        
+        sub1 = sus2[-1:]
+
+        if sub1 != 's':
+            return sus2
+        else:
+            return self.esSingular(caso)
