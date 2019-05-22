@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
+import random
 from vglobals import Grammar
 from vglobals import Exe
 from vglobals import Vocabulary
 
 class Tools:
 
+    # ADD ART
     def conArt(self, sus2):
         fsus = ''
         sub1 = sus2[-1:]
@@ -67,3 +69,15 @@ class Tools:
             fsus = 'el ' + sus2
 
         return fsus
+
+    # CONJ VERB
+    def conVerb(self, sus2):
+        sub1 = sus2[-1:]
+        verb = ''
+
+        if sub1 == 's':
+            verb = Vocabulary.conj1[random.randint(1, len(Vocabulary.conj1))]
+        else:
+            verb = Vocabulary.conj2[random.randint(1, len(Vocabulary.conj2))]
+        
+        return verb
