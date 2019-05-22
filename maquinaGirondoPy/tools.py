@@ -125,3 +125,18 @@ class Tools:
             return sus2
         else:
             return self.esSingular(caso)
+
+    # THEME
+    def temaLugar(self, caso):
+        nlugar = ''
+
+        if caso == 0: # calle
+            nlugar = Vocabulary.lugar[random.randint(1, 20)]
+        elif caso == 1: # noche
+            nlugar = Vocabulary.lugar[random.randint(20, 33)]
+        elif caso == 2: # plaza
+            nlugar = Vocabulary.lugar[random.randint(33, 46)]
+        elif caso == 3: # mar
+            nlugar = Vocabulary.lugar[random.randint(46, len(Vocabulary.lugar))]
+
+        return nlugar
