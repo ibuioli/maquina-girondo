@@ -9,4 +9,4 @@ from tools import Tools
 class Verso:
 
 	def test(self):
-		return Tools().esPlural(1)
+		return Tools().adjGenero('tranvía')
