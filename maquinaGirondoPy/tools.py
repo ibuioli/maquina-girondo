@@ -41,6 +41,13 @@ class Tools:
                     fsus = 'la ' + sus2
                 else:
                     fsus = 'el ' + sus2
+            elif sub1 == 'a':
+                if fem:
+                    fsus = 'la ' + sus2
+                elif mas:
+                    fsus = 'el ' + sus2
+                else:
+                    fsus = 'la ' + sus2
             else:
                 if fem:
                     fsus = 'la ' + sus2
@@ -65,8 +72,6 @@ class Tools:
                     fsus = 'los ' + sus2
             else:
                 fsus = 'el ' + sus2
-        else:
-            fsus = 'el ' + sus2
 
         return fsus
 
