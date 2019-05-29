@@ -89,6 +89,7 @@ class Exe:
 		'piel',
 		'razón',
 		'intención',
+		'nave',
 		'desnudez'
 	]
 

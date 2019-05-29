@@ -2,6 +2,7 @@
 
 import random
 from verso import Verso
+from estrofa import Estrofa
 
-ver = Verso()
-print ver.verso(random.randint(1, 7), random.randint(0, 3), random.randint(0, 3))
+es = Estrofa()
+print es.estrofa(5)
