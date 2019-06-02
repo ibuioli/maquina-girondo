@@ -68,6 +68,6 @@ class Estrofa(object):
                     estru.append(random.randint(0, 3))
 
         for i in range(c):
-            versos.append(Verso().verso(palabras[i], estru[i], theme))
+            versos.append(Verso().verso(palabras[i], estru[i], theme).decode('utf8'))
 
-        print versos
+        return versos
