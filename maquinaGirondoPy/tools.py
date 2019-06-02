@@ -26,7 +26,7 @@ class Tools:
 
         if sub1 != 's':
             if sub1 != 'a':
-                if mas == False:
+                if mas == False and sub1 != 'o':
                     fsus = 'la ' + sus2
                 else:
                     fsus = 'el ' + sus2

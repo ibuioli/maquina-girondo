@@ -103,7 +103,8 @@ class Exe:
 		'callicidas',
 		'lema',
 		'día',
-		'días'
+		'días',
+		'alma'
 	]
 
 class Vocabulary:
