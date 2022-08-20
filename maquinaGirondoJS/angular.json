@@ -110,7 +110,6 @@
       }
     }
   },
-  "defaultProject": "maquina-girondo",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
