@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, ElementRef, Renderer } from '@angular/core';
+import { Component, OnInit, DoCheck, ElementRef, Renderer2 } from '@angular/core';
 import { EstrofaService } from '../core/estrofa.service';
 import { TituloService } from '../core/titulo.service';
 import { SystemService } from '../core/system.service';
@@ -21,27 +21,24 @@ export class MobileComponent implements OnInit, DoCheck {
   value = 0;
 
   constructor(public s: SystemService, public e: EstrofaService, public t: TituloService, public g: GeolocService,
-  public el: ElementRef, public renderer: Renderer) {
+  public el: ElementRef, public renderer: Renderer2) {
     const this_ = this;
 
-    renderer.listenGlobal('document', 'touchmove', (e: any) => {
-      if (this_.pMov === undefined) {
+    renderer.listen('document', 'touchmove', (e: any) => {
+    if (this_.pMov === undefined) {
         this_.pMov = e.touches[0].clientX;
-      }
-      this_.value += e.touches[0].clientX - this_.pMov;
+    }
+    this_.value += e.touches[0].clientX - this_.pMov;
+    document.getElementById('cont').style.opacity =
+        this_.s.constrain(this_.s.map_range(this_.value, 0, -200, 0.97, 0.2), 0.2, 0.97).toString();
+    document.getElementById('cont').style.left = this_.value.toString() + 'px';
+    this_.pMov = e.touches[0].clientX;
+});
 
-      document.getElementById('cont').style.opacity =
-      this_.s.constrain(this_.s.map_range(this_.value, 0, -200, 0.97, 0.2), 0.2, 0.97).toString();
-
-      document.getElementById('cont').style.left = this_.value.toString() + 'px';
-
-      this_.pMov = e.touches[0].clientX;
-    });
-
-    renderer.listenGlobal('document', 'touchend', (e: any) => {
-      document.getElementById('cont').style.opacity = '0.97';
-      document.getElementById('cont').style.left = '0px';
-    });
+    renderer.listen('document', 'touchend', (e: any) => {
+    document.getElementById('cont').style.opacity = '0.97';
+    document.getElementById('cont').style.left = '0px';
+});
   }
 
   ngOnInit() {}
