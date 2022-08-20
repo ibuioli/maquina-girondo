@@ -9,7 +9,7 @@ import { SystemService } from '../core/system.service';
   styleUrls: ['./voice.component.css']
 })
 export class VoiceComponent implements OnInit {
-  @ViewChild('debug') debug: ElementRef;
+  @ViewChild('debug', { static: true }) debug: ElementRef;
 
   constructor(public s: SystemService, public e: EstrofaService) {
     meSpeak.loadConfig(require('mespeak/src/mespeak_config.json'));
