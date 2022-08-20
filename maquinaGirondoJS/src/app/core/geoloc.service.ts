@@ -63,9 +63,9 @@ export class GeolocService {
   public getLug(lat: number, lng: number): void {
     const this_ = this;
 
-    this.s.loadJSON('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + '%2C' + lng + '&language=es', function(err, data) {
+    this.s.loadJSON('https://maps.googleapis.com/maps/api/geocode/json?latlng=' +
+    lat + '%2C' + lng + '&language=es&key=AIzaSyCXodxfGv7qhVkx4-KJcAbFisjm020GvQI', function(err, data) {
       if (err !== null) {
-        console.log('ERR: ' + err);
         GeoData.lug = '';
         GeoData.tema = this_.s.random(0, 3.99);
       } else {
